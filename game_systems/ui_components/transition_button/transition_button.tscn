@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bswc06g8au3yg"]
+
+[ext_resource type="Script" uid="uid://c7or6rww3dndi" path="res://game_systems/ui_components/transition_button/transition_button.gd" id="2"]
+
+[node name="Button" type="Button"]
+offset_right = 139.0
+offset_bottom = 41.0
+text = "Button"
+script = ExtResource("2")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

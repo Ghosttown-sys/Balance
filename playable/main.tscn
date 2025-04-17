@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlta5f0tklkad"]
+
+[ext_resource type="Script" uid="uid://c5i4e1bx24ubs" path="res://playable/main.gd" id="1_11d8s"]
+[ext_resource type="Texture2D" uid="uid://viq25r5fav7p" path="res://assets/mouse/circle_05.png" id="1_vhmpl"]
+[ext_resource type="Script" uid="uid://dy218p20kt8ot" path="res://playable/node.gd" id="3_11d8s"]
+
+[node name="Node2D" type="Node"]
+script = ExtResource("1_11d8s")
+
+[node name="puzzle_generator" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_11d8s")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+texture = ExtResource("1_vhmpl")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -560.0
+offset_right = 1120.0
+offset_bottom = 560.0
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="problem_puzzle" type="GridContainer" parent="Control/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(720, 720)
+layout_mode = 2
+theme_override_constants/h_separation = 140
+theme_override_constants/v_separation = 150
+columns = 6
+
+[node name="solution_puzzle" type="GridContainer" parent="Control/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(720, 720)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/h_separation = 140
+theme_override_constants/v_separation = 150
+columns = 6

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ptsvc3o3ru82"]
+
+[ext_resource type="Script" uid="uid://ipdq5cpws6hf" path="res://game_systems/ui_components/mouse_controllers/mouse_controller_layer.gd" id="1_km5vy"]
+[ext_resource type="PackedScene" uid="uid://wxvbfm7hrfup" path="res://game_systems/ui_components/mouse_controllers/mouse_controller.tscn" id="1_qvbee"]
+
+[node name="Mouse_Controller_layer" type="CanvasLayer"]
+layer = 128
+script = ExtResource("1_km5vy")
+
+[node name="Mouse_Controller" parent="." instance=ExtResource("1_qvbee")]
