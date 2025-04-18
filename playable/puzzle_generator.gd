@@ -46,27 +46,47 @@ func try_generate_board() -> Array:
 
 func create_solvable_puzzle(board: Array, difficulty: float) -> int:
 	var cells_to_keep = int(36 * (1.0 - difficulty))
-	cells_to_keep = clamp(cells_to_keep, 12, 30)
-	
-	var positions = []
+	cells_to_keep = clamp(cells_to_keep, 8, 30)
+
+	var max_per_line := int(lerp(6.0, 2.0, difficulty))
+
+	var positions := []
 	for row in range(6):
 		for col in range(6):
 			positions.append(Vector2(col, row))
-	
+
 	shuffle_with_rng(positions, rng)
 
-	var cells_removed = 0
-	for i in range(positions.size()):
-		if i >= cells_to_keep:
-			var pos = positions[i]
-			var original = board[pos.y][pos.x]
-			board[pos.y][pos.x] = -1
-			
-			if not is_uniquely_solvable(board, original):
-				board[pos.y][pos.x] = original
-			else:
-				cells_removed += 1
-	
+	var row_counts := [0, 0, 0, 0, 0, 0]
+	var col_counts := [0, 0, 0, 0, 0, 0]
+	var keep_mask := {}
+
+	for pos in positions:
+		if keep_mask.size() >= cells_to_keep:
+			break
+
+		var row = pos.y
+		var col = pos.x
+
+		if row_counts[row] >= max_per_line or col_counts[col] >= max_per_line:
+			continue
+
+		keep_mask[pos] = true
+		row_counts[row] += 1
+		col_counts[col] += 1
+
+	var cells_removed := 0
+	for row in range(6):
+		for col in range(6):
+			var pos := Vector2(col, row)
+			if not keep_mask.has(pos):
+				var original = board[row][col]
+				board[row][col] = -1
+				if not is_uniquely_solvable(board, original):
+					board[row][col] = original
+				else:
+					cells_removed += 1
+
 	return cells_removed
 
 func is_uniquely_solvable(puzzle: Array, original_value: int) -> bool:
@@ -100,7 +120,7 @@ func is_valid_solution(grid: Array, test_value: int) -> bool:
 			var c = row[i + 2] if row[i + 2] != -1 else test_value
 			if a == b and b == c:
 				return false
-	
+
 	for col in range(6):
 		var col_vals = []
 		for row in grid:
@@ -125,7 +145,7 @@ func is_valid_solution(grid: Array, test_value: int) -> bool:
 			var c = col_vals[i + 2] if col_vals[i + 2] != -1 else test_value
 			if a == b and b == c:
 				return false
-	
+
 	return true
 
 func get_valid_rows(col_counts: Array, last_two: Array) -> Array:

@@ -1,21 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlta5f0tklkad"]
+[gd_scene load_steps=5 format=3 uid="uid://dlta5f0tklkad"]
 
-[ext_resource type="Script" uid="uid://c5i4e1bx24ubs" path="res://playable/main.gd" id="1_11d8s"]
-[ext_resource type="Texture2D" uid="uid://viq25r5fav7p" path="res://assets/mouse/circle_05.png" id="1_vhmpl"]
-[ext_resource type="Script" uid="uid://dy218p20kt8ot" path="res://playable/node.gd" id="3_11d8s"]
+[ext_resource type="Script" uid="uid://dw3ofaehia5ax" path="res://playable/main.gd" id="1_11d8s"]
+[ext_resource type="Script" uid="uid://lhvr60dl8orx" path="res://playable/camera.gd" id="2_5kgcf"]
+[ext_resource type="Script" uid="uid://dy218p20kt8ot" path="res://playable/puzzle_generator.gd" id="3_11d8s"]
+[ext_resource type="Script" uid="uid://c5i4e1bx24ubs" path="res://playable/puzzle.gd" id="3_w0uya"]
 
 [node name="Node2D" type="Node"]
 script = ExtResource("1_11d8s")
 
-[node name="puzzle_generator" type="Node" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3_11d8s")
+position = Vector2(960, 540)
+script = ExtResource("2_5kgcf")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-texture = ExtResource("1_vhmpl")
+[node name="Puzzle" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_w0uya")
 
-[node name="Control" type="Control" parent="."]
+[node name="Puzzle_UI" type="Control" parent="Puzzle"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,25 +25,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
+[node name="MarginContainer" type="MarginContainer" parent="Puzzle/Puzzle_UI"]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -560.0
 offset_top = -560.0
-offset_right = 1120.0
+offset_right = 560.0
 offset_bottom = 560.0
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 200
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+[node name="Puzzle_Container" type="HBoxContainer" parent="Puzzle/Puzzle_UI/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 200
+alignment = 1
 
-[node name="problem_puzzle" type="GridContainer" parent="Control/MarginContainer/HBoxContainer"]
+[node name="problem_puzzle" type="GridContainer" parent="Puzzle/Puzzle_UI/MarginContainer/Puzzle_Container"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(720, 720)
 layout_mode = 2
@@ -49,11 +58,84 @@ theme_override_constants/h_separation = 140
 theme_override_constants/v_separation = 150
 columns = 6
 
-[node name="solution_puzzle" type="GridContainer" parent="Control/MarginContainer/HBoxContainer"]
+[node name="solution_puzzle" type="GridContainer" parent="Puzzle/Puzzle_UI/MarginContainer/Puzzle_Container"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(720, 720)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/h_separation = 140
 theme_override_constants/v_separation = 150
 columns = 6
+
+[node name="puzzle_generator" type="Node" parent="Puzzle"]
+unique_name_in_owner = true
+script = ExtResource("3_11d8s")
+
+[node name="Ui" type="Node" parent="."]
+
+[node name="margin" type="MarginContainer" parent="Ui"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/margin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Level" type="Label" parent="Ui/margin/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "Level : "
+
+[node name="Level Clear" type="Label" parent="Ui/margin/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "Level Clear"
+
+[node name="Retry" type="Button" parent="Ui/margin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 50
+text = "Retry
+"
+
+[node name="Next_Level" type="Button" parent="Ui/margin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 50
+text = "Next Level"
+
+[node name="Rules" type="Label" parent="Ui/margin"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Puzzle Rules  
+
+1) Each row & column must contain exactly 3 SUN and 3 MOON.  
+
+2) No 3 SUN or 3 MOON can appear consecutively in any row or column.  "
+autowrap_mode = 2
+
+[connection signal="pressed" from="Ui/margin/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Ui/margin/Next_Level" to="." method="_on_next_level_pressed"]

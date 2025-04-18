@@ -16,8 +16,9 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_nc3us")
 
 [node name="PointLight2D" type="PointLight2D" parent="CanvasLayer/Cursor"]
-position = Vector2(-12, -14)
-scale = Vector2(1.75, 1.69792)
+position = Vector2(-2, 2)
+scale = Vector2(2.89062, 3.00781)
 energy = 16.0
-range_item_cull_mask = 2
+range_item_cull_mask = 6
 texture = ExtResource("3_dgtc6")
+texture_scale = 0.2
