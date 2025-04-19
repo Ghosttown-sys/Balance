@@ -1,18 +1,23 @@
 [gd_scene load_steps=5 format=3 uid="uid://nvi3u6lv7ihv"]
 
 [ext_resource type="Script" uid="uid://buf5xijk2jybj" path="res://playable/grid.gd" id="1_bdslu"]
-[ext_resource type="Texture2D" uid="uid://dg0anwigjfbhq" path="res://assets/grid/grid.png" id="1_ixgee"]
+[ext_resource type="Texture2D" uid="uid://ddydmbdcpjj35" path="res://assets/grid/default.png" id="2_18dh2"]
 [ext_resource type="Texture2D" uid="uid://c36uadvm4ayj0" path="res://assets/grid/Group 1.png" id="3_18dh2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_18dh2"]
 light_mode = 2
 
-[node name="Grid_Box" type="Control"]
+[node name="Grid_Box" type="Control" node_paths=PackedStringArray("label", "icon", "box", "border")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_bdslu")
+label = NodePath("Label")
+icon = NodePath("Icon")
+box = NodePath("Box")
+border = NodePath("Border")
 
 [node name="Box" type="TextureRect" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 1
 anchors_preset = 8
@@ -26,7 +31,7 @@ offset_right = 80.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_ixgee")
+texture = ExtResource("2_18dh2")
 expand_mode = 1
 stretch_mode = 5
 
