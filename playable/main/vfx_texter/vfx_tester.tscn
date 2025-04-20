@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chaeuq5dpkgvw"]
+
+[ext_resource type="Script" uid="uid://bq8qlfcni0igo" path="res://playable/main/vfx_tester.gd" id="1_y1qky"]
+
+[node name="VFX_Tester" type="Node"]
+script = ExtResource("1_y1qky")

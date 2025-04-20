@@ -18,6 +18,9 @@ config/icon="res://assets/icons/icon.svg"
 [autoload]
 
 Mouse_Controller="*res://game_systems/ui_components/mouse_controllers/mouse_controller_layer.tscn"
+Object_Registry="*res://addons/revelab_effect_handler/auto_load/object_registry.tscn"
+Effect_Catalog="*res://addons/revelab_effect_handler/auto_load/effect_catalog.tscn"
+Game="*res://autoload/game.gd"
 
 [display]
 
@@ -26,9 +29,12 @@ window/size/viewport_height=1080
 window/size/sharp_corners=true
 window/size/window_width_override=1280
 window/size/window_height_override=720
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
+window/stretch/mode="canvas_items"
 window/per_pixel_transparency/allowed=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/revelab_effect_handler/plugin.cfg")
 
 [input]
 

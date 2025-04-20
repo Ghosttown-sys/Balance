@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://wxvbfm7hrfup"]
+[gd_scene load_steps=3 format=3 uid="uid://wxvbfm7hrfup"]
 
 [ext_resource type="Script" uid="uid://cfc1hxdjs8jk3" path="res://game_systems/ui_components/mouse_controllers/mouse_controller.gd" id="1_347ns"]
-[ext_resource type="Texture2D" uid="uid://ch6x1rn80rkd5" path="res://assets/mouse/mouse_light.png" id="1_nc3us"]
 [ext_resource type="Texture2D" uid="uid://viq25r5fav7p" path="res://assets/mouse/circle_05.png" id="3_dgtc6"]
 
 [node name="Mouse_Controller" type="Node2D"]
@@ -13,7 +12,6 @@ layer = 50
 [node name="Cursor" type="Sprite2D" parent="CanvasLayer"]
 unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_nc3us")
 
 [node name="PointLight2D" type="PointLight2D" parent="CanvasLayer/Cursor"]
 position = Vector2(-2, 2)

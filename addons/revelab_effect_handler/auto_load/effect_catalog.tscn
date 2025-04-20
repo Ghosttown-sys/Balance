@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1kb52nt8vmcr"]
+
+[ext_resource type="Script" uid="uid://d3x184wse4urx" path="res://addons/revelab_effect_handler/auto_load/effect_catalog.gd" id="1_btod6"]
+
+[node name="EffectDatabase" type="Node"]
+script = ExtResource("1_btod6")
