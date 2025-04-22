@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0g1p66e4x31u"]
+
+[ext_resource type="Theme" uid="uid://t2kphxi3arin" path="res://addons/revelab_base_kit/theme/global_theme.tres" id="1"]
+[ext_resource type="Script" uid="uid://bkbiny41m0ygy" path="res://addons/revelab_base_kit/save_load_ui/pause/pause_dialog.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://crvphqeucouq3" path="res://addons/revelab_base_kit/save_load_ui/save_load_dialogues/save_game_dlg.tscn" id="4"]
+
+[node name="PauseDialogue" type="Control"]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1")
+script = ExtResource("2")
+
+[node name="Bg" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 0.709804)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -171.5
+offset_right = 135.0
+offset_bottom = 171.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeBtn" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
+text = "Resume"
+flat = true
+
+[node name="SaveBtn" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
+text = "Save"
+flat = true
+
+[node name="LoadBtn" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
+text = "Load"
+flat = true
+
+[node name="OptionsBtn" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
+text = "Options"
+flat = true
+
+[node name="MainMenuBtn" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
+text = "Main Menu"
+flat = true
+
+[node name="Save_Game" parent="." instance=ExtResource("4")]
+
+[node name="Pause_Button" type="TextureButton" parent="."]
+self_modulate = Color(0, 0.117647, 1, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -104.0
+offset_bottom = 94.0
+grow_horizontal = 0
+stretch_mode = 3
+
+[connection signal="pressed" from="VBoxContainer/ResumeBtn" to="." method="_on_ResumeBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveBtn" to="." method="_on_SaveBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadBtn" to="." method="_on_LoadBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsBtn" to="." method="_on_LoadBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuBtn" to="." method="_on_MainMenuBtn_pressed"]
+[connection signal="pressed" from="Pause_Button" to="." method="_on_pause_button_pressed"]

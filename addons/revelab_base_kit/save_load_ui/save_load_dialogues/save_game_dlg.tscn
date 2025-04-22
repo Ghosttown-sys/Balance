@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://crvphqeucouq3"]
+
+[ext_resource type="Theme" uid="uid://t2kphxi3arin" path="res://addons/revelab_base_kit/theme/global_theme.tres" id="1"]
+[ext_resource type="Script" uid="uid://dhr0i0jaey3yq" path="res://addons/revelab_base_kit/save_load_ui/save_load_dialogues/save_game_dlg.gd" id="2"]
+
+[node name="SaveGame" type="ConfirmationDialog"]
+process_mode = 2
+title = "Save Game"
+size = Vector2i(577, 489)
+theme = ExtResource("1")
+script = ExtResource("2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -55.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save game?"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(513, 342)
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 3
+stretch_mode = 6
+
+[connection signal="confirmed" from="." to="." method="_on_SaveGame_confirmed"]
