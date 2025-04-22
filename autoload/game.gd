@@ -4,9 +4,9 @@ const TOTAL_TUTORIALS := 6
 const SAVE_PATH := "user://save_data.json"
 const PROGRESS_PATH := "user://progress.json"
 
-var tutorial_level_index := 0
 var current_level_index := 0
 var is_in_tutorial := false
+var tutorials_completed := false
 
 var player_name := ""
 var current_score := 0
@@ -31,7 +31,7 @@ func load_regular_level(index: int):
 
 func complete_current_level():
 	if is_in_tutorial:
-		tutorial_level_index += 1
+		tutorials_completed = true
 		save_progress()
 	else:
 		current_level_index += 1
@@ -43,8 +43,8 @@ func complete_current_level():
 
 func save_progress():
 	var progress_data = {
-		"tutorial_level_index": tutorial_level_index,
-		"current_level_index": current_level_index
+		"current_level_index": current_level_index,
+		"tutorials_completed": tutorials_completed
 	}
 	var file = FileAccess.open(PROGRESS_PATH, FileAccess.WRITE)
 	file.store_line(JSON.stringify(progress_data))
@@ -60,8 +60,8 @@ func load_progress():
 
 	var progress_data = JSON.parse_string(content)
 	if progress_data:
-		tutorial_level_index = progress_data.get("tutorial_level_index", 0)
 		current_level_index = progress_data.get("current_level_index", 0)
+		tutorials_completed = progress_data.get("tutorials_completed", false)
 
 func save_data():
 	var save_data = {

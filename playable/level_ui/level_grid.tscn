@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://rj17abasch3k"]
+
+[ext_resource type="Script" uid="uid://dv4vjuwpswhf0" path="res://playable/level_ui/level_grid.gd" id="1_4w7j0"]
+[ext_resource type="Texture2D" uid="uid://ddydmbdcpjj35" path="res://assets/grid/default.png" id="2_6bw04"]
+[ext_resource type="Texture2D" uid="uid://c36uadvm4ayj0" path="res://assets/grid/Group 1.png" id="3_bux1c"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_18dh2"]
+light_mode = 2
+
+[node name="Grid_Box" type="Control" node_paths=PackedStringArray("border", "box", "level_label")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4w7j0")
+border = NodePath("Border")
+box = NodePath("Box")
+level_label = NodePath("Label")
+
+[node name="Box" type="TextureRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6bw04")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Border" type="TextureRect" parent="."]
+light_mask = 0
+material = SubResource("CanvasItemMaterial_18dh2")
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_bux1c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -63.0
+offset_top = -74.0
+offset_right = 28.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

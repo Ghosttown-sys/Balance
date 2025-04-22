@@ -1,17 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlta5f0tklkad"]
+[gd_scene load_steps=5 format=3 uid="uid://dlta5f0tklkad"]
 
 [ext_resource type="Script" uid="uid://dw3ofaehia5ax" path="res://playable/main/main.gd" id="1_htdf5"]
-[ext_resource type="PackedScene" uid="uid://djd1siahydn8e" path="res://addons/revelab_effect_handler/scenes/effect_handler.tscn" id="2_3g0m4"]
 [ext_resource type="Script" uid="uid://lhvr60dl8orx" path="res://playable/main/camera.gd" id="3_1udd7"]
 [ext_resource type="Script" uid="uid://c5i4e1bx24ubs" path="res://playable/puzzle/puzzle.gd" id="4_0gp2c"]
 [ext_resource type="Script" uid="uid://dy218p20kt8ot" path="res://playable/puzzle/puzzle_generator.gd" id="5_nw5vk"]
-[ext_resource type="PackedScene" uid="uid://chaeuq5dpkgvw" path="res://playable/main/vfx_texter/vfx_tester.tscn" id="6_htdf5"]
 
 [node name="Node2D" type="Node"]
 script = ExtResource("1_htdf5")
-
-[node name="Effect_Handler" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_3g0m4")]
-camera = NodePath("../Camera")
 
 [node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true
@@ -141,8 +136,6 @@ text = "Puzzle Rules
 
 2) No 3 SUN or 3 MOON can appear consecutively in any row or column.  "
 autowrap_mode = 2
-
-[node name="VFX_Tester" parent="." instance=ExtResource("6_htdf5")]
 
 [connection signal="pressed" from="Ui/margin/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="Ui/margin/Next_Level" to="." method="_on_next_level_pressed"]
