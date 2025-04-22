@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjwtes1a3ykua"]
+[gd_scene load_steps=3 format=3 uid="uid://cjwtes1a3ykua"]
 
 [ext_resource type="Script" uid="uid://btny621oeoken" path="res://playable/level_ui/level_selection.gd" id="1_x32ap"]
+[ext_resource type="PackedScene" uid="uid://dr5bnburwost2" path="res://playable/level_ui/levels.tscn" id="2_x32ap"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("level_holder")]
 layout_mode = 3
@@ -13,19 +14,58 @@ script = ExtResource("1_x32ap")
 level_holder = NodePath("levels")
 main_scene = "uid://dlta5f0tklkad"
 
-[node name="levels" type="GridContainer" parent="."]
+[node name="levels" parent="." instance=ExtResource("2_x32ap")]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -271.0
+offset_right = 5.0
+offset_bottom = -271.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -137.0
+offset_top = 34.0
+offset_right = 144.0
+offset_bottom = 103.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = 140
-theme_override_constants/v_separation = 150
-columns = 12
+theme_override_font_sizes/font_size = 50
+text = "Select Level"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = -130.0
+offset_right = 119.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 100
+
+[node name="pevious" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 130)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Previous"
+
+[node name="next" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 130)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Next"
+
+[connection signal="pressed" from="HBoxContainer/pevious" to="." method="_on_pevious_pressed"]
+[connection signal="pressed" from="HBoxContainer/next" to="." method="_on_next_pressed"]
