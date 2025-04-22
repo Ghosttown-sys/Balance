@@ -2,7 +2,7 @@ extends Control
 
 @export var level_holder: GridContainer
 const LEVEL_GRID = preload("res://playable/level_ui/level_grid.tscn")
-const LEVELS_PER_PAGE := 60
+const LEVELS_PER_PAGE : int = 60
 
 @export_file("*.tscn") var main_scene: String
 
