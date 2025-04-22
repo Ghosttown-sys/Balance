@@ -12,6 +12,8 @@ var player_name := ""
 var current_score := 0
 var high_score := 0
 
+var transition_level := 0
+
 func _ready():
 	load_data()
 	load_progress()
@@ -68,6 +70,7 @@ func save_data():
 		"player_name": player_name,
 		"high_score": high_score
 	}
+
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	file.store_line(JSON.stringify(save_data))
 	file.close()

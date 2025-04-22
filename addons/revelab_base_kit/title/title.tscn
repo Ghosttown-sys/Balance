@@ -1,23 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://c8ndj7bvsf8pv"]
+[gd_scene load_steps=3 format=3 uid="uid://c8ndj7bvsf8pv"]
 
 [ext_resource type="Script" uid="uid://d4g3d4l77qnq7" path="res://addons/revelab_base_kit/title/title.gd" id="1_8exur"]
-[ext_resource type="Texture2D" uid="uid://b4u5tjmrbqk7t" path="res://assets/art/common_bg.png" id="2_8646l"]
 [ext_resource type="PackedScene" uid="uid://bclfk72fg3iai" path="res://addons/revelab_base_kit/save_load_ui/save_load_dialogues/load_game_dlg.tscn" id="2_gcri8"]
-[ext_resource type="Texture2D" uid="uid://iaaqvkd15wno" path="res://assets/mosnter_arts/1.png" id="4_i8y5f"]
-[ext_resource type="Texture2D" uid="uid://bgqqs7ihfxenw" path="res://assets/art/better_icons/stage_frame_nomal.png" id="4_l53k1"]
-[ext_resource type="Texture2D" uid="uid://xxnh7ahearp0" path="res://assets/art/better_icons/bg_wooden.png" id="5_hkbub"]
-[ext_resource type="Texture2D" uid="uid://c7ngnijw6ctdc" path="res://assets/mosnter_arts/2.png" id="5_o0w3x"]
-[ext_resource type="Texture2D" uid="uid://c3wqybfn53hbt" path="res://assets/mosnter_arts/3.png" id="6_jhds2"]
-[ext_resource type="Texture2D" uid="uid://viq4fwelr1d8" path="res://assets/mosnter_arts/4.png" id="7_5tymx"]
-[ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="7_6rntk"]
-[ext_resource type="Texture2D" uid="uid://bldteaje8bdll" path="res://assets/art/better_icons/status_icon_coin.png" id="7_oby1f"]
-[ext_resource type="Texture2D" uid="uid://dve1ghc35yo8d" path="res://assets/mosnter_arts/5.png" id="8_0tg6o"]
-[ext_resource type="Texture2D" uid="uid://cy3jlvruk5816" path="res://assets/art/icons/popup_bg_list_01_frame.png" id="8_l53k1"]
-[ext_resource type="Texture2D" uid="uid://dxb0nf2tnpku6" path="res://assets/mosnter_arts/6.png" id="9_updra"]
-[ext_resource type="Texture2D" uid="uid://ddtw0dahwy7a" path="res://assets/mosnter_arts/7.png" id="10_c115h"]
-[ext_resource type="Texture2D" uid="uid://dfqmu1o62kdh6" path="res://assets/art/better_icons/level_up_eff_01.png" id="11_uc2iu"]
-[ext_resource type="StyleBox" uid="uid://cy4hhx78dbkq" path="res://assets/theme/title.tres" id="17_c115h"]
-[ext_resource type="Texture2D" uid="uid://bfhf8n0spgfdg" path="res://assets/mosnter_arts/22.png" id="19_ehgfk"]
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -27,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8exur")
-main_scene = "uid://7xl808detvqg"
+main_scene = "uid://cjwtes1a3ykua"
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
@@ -36,7 +20,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_8646l")
 expand_mode = 1
 
 [node name="Image_host" type="MarginContainer" parent="."]
@@ -61,118 +44,6 @@ layout_mode = 2
 [node name="LoadGameDlg" parent="." instance=ExtResource("2_gcri8")]
 visible = false
 theme = null
-
-[node name="StageFrameNomal" type="Sprite2D" parent="."]
-position = Vector2(770, 427)
-scale = Vector2(2.19266, 2.19266)
-texture = ExtResource("4_l53k1")
-
-[node name="Title Goes in here" type="Sprite2D" parent="."]
-z_index = 100
-position = Vector2(770, 581)
-texture = ExtResource("5_hkbub")
-
-[node name="Coins" type="Node2D" parent="."]
-
-[node name="StatusIconCoin" type="Sprite2D" parent="Coins"]
-position = Vector2(64, 199)
-rotation = -2.57262
-texture = ExtResource("7_oby1f")
-
-[node name="StatusIconCoin2" type="Sprite2D" parent="Coins"]
-position = Vector2(731, 514)
-rotation = -1.07687
-texture = ExtResource("7_oby1f")
-
-[node name="StatusIconCoin3" type="Sprite2D" parent="Coins"]
-position = Vector2(202, -5)
-rotation = -0.837758
-texture = ExtResource("7_oby1f")
-
-[node name="StatusIconCoin4" type="Sprite2D" parent="Coins"]
-position = Vector2(162, 349)
-rotation = 0.958186
-texture = ExtResource("7_oby1f")
-
-[node name="LeaderboardUI" parent="." instance=ExtResource("7_6rntk")]
-layout_mode = 1
-offset_left = 158.0
-offset_top = 42.0
-offset_right = -625.0
-offset_bottom = -246.0
-leaderboard_id = "lucky-life-high-scores-wxlf"
-
-[node name="Panel" type="Sprite2D" parent="."]
-position = Vector2(338.5, 243.5)
-scale = Vector2(0.570175, 0.911765)
-texture = ExtResource("8_l53k1")
-
-[node name="Spinning" type="Node2D" parent="."]
-
-[node name="LevelUpEff0 Large" type="Sprite2D" parent="Spinning"]
-position = Vector2(767, 164)
-scale = Vector2(1.23201, 1.23201)
-texture = ExtResource("11_uc2iu")
-
-[node name="LevelUpEff0 Large2" type="Sprite2D" parent="Spinning"]
-position = Vector2(767, 164)
-scale = Vector2(1.23201, 1.23201)
-texture = ExtResource("11_uc2iu")
-
-[node name="Pins" type="Node2D" parent="."]
-
-[node name="1" type="Sprite2D" parent="Pins"]
-z_index = 30
-position = Vector2(984, 429)
-rotation = -0.174533
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("4_i8y5f")
-
-[node name="2" type="Sprite2D" parent="Pins"]
-z_index = 30
-position = Vector2(1103, 240)
-rotation = -1.1973
-scale = Vector2(0.47, 0.47)
-texture = ExtResource("5_o0w3x")
-
-[node name="3" type="Sprite2D" parent="Pins"]
-z_index = 30
-position = Vector2(543, 14)
-rotation = -0.802851
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_jhds2")
-
-[node name="4" type="Sprite2D" parent="Pins"]
-z_index = 30
-position = Vector2(1022, 46)
-rotation = 2.51327
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_5tymx")
-
-[node name="6" type="Sprite2D" parent="Pins"]
-z_index = 30
-position = Vector2(80, 43)
-rotation = 0.837758
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("9_updra")
-
-[node name="7" type="Sprite2D" parent="Pins"]
-z_index = 30
-position = Vector2(780, 173)
-texture = ExtResource("10_c115h")
-
-[node name="5" type="Sprite2D" parent="Pins"]
-z_index = 30
-position = Vector2(574, 436)
-rotation = 0.380482
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("8_0tg6o")
-
-[node name="22" type="Sprite2D" parent="Pins"]
-position = Vector2(23, 334)
-rotation = -0.120428
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("19_ehgfk")
 
 [node name="Menu" type="MarginContainer" parent="."]
 z_index = 500
@@ -203,17 +74,6 @@ layout_mode = 2
 focus_mode = 0
 theme_override_constants/h_separation = 10
 theme_override_font_sizes/font_size = 50
-theme_override_styles/focus = ExtResource("17_c115h")
-theme_override_styles/disabled_mirrored = ExtResource("17_c115h")
-theme_override_styles/disabled = ExtResource("17_c115h")
-theme_override_styles/hover_pressed_mirrored = ExtResource("17_c115h")
-theme_override_styles/hover_pressed = ExtResource("17_c115h")
-theme_override_styles/hover_mirrored = ExtResource("17_c115h")
-theme_override_styles/hover = ExtResource("17_c115h")
-theme_override_styles/pressed_mirrored = ExtResource("17_c115h")
-theme_override_styles/pressed = ExtResource("17_c115h")
-theme_override_styles/normal_mirrored = ExtResource("17_c115h")
-theme_override_styles/normal = ExtResource("17_c115h")
 text = "New Game"
 
 [node name="continue_game" type="Button" parent="Menu/Button_container"]
@@ -235,17 +95,6 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 50
-theme_override_styles/focus = ExtResource("17_c115h")
-theme_override_styles/disabled_mirrored = ExtResource("17_c115h")
-theme_override_styles/disabled = ExtResource("17_c115h")
-theme_override_styles/hover_pressed_mirrored = ExtResource("17_c115h")
-theme_override_styles/hover_pressed = ExtResource("17_c115h")
-theme_override_styles/hover_mirrored = ExtResource("17_c115h")
-theme_override_styles/hover = ExtResource("17_c115h")
-theme_override_styles/pressed_mirrored = ExtResource("17_c115h")
-theme_override_styles/pressed = ExtResource("17_c115h")
-theme_override_styles/normal_mirrored = ExtResource("17_c115h")
-theme_override_styles/normal = ExtResource("17_c115h")
 text = "Exit"
 
 [connection signal="pressed" from="Menu/Button_container/new_game" to="." method="_on_NewGameBtn_pressed"]

@@ -4,6 +4,8 @@ extends Control
 const LEVEL_GRID = preload("res://playable/level_ui/level_grid.tscn")
 const LEVELS_PER_PAGE := 60
 
+@export_file("*.tscn") var main_scene: String
+
 @export var spawn_delay: float = 0.05 
 @export var spawn_duration: float = 0.3  
 @export var spawn_scale_start: float = 0.5 
@@ -48,7 +50,8 @@ func spawn_levels(start_level: int, count: int):
 		tween.parallel().tween_property(tile, "modulate:a", 1, spawn_duration * 0.8)
 
 func _on_level_selected(level: int):
-	print("Level selected: ", level)
+	Game.transition_level = level
+	Transition_Manager.transition_to(main_scene)
 
 func clear_grid():
 	clear_spawn_tweens()

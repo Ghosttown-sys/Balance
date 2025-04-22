@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Balance"
-run/main_scene="uid://dlta5f0tklkad"
+run/main_scene="uid://c8ndj7bvsf8pv"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://assets/icons/icon.svg"
 

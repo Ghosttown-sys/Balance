@@ -13,7 +13,9 @@ var complexcity := 1
 
 func _ready() -> void:
 	puzzle.puzzle_completed.connect(_on_puzzle_completed)
+	Game.current_level_index = Game.transition_level-1
 	start_level()
+
 
 func _on_next_level_pressed() -> void:
 	Game.complete_current_level()
