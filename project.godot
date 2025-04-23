@@ -36,6 +36,21 @@ window/per_pixel_transparency/allowed=true
 
 enabled=PackedStringArray("res://addons/revelab_base_kit/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray",
+"res://assets/": "teal",
+"res://autoload/": "blue",
+"res://game_systems/": "blue",
+"res://playable/": "blue"
+}
+
+[gui]
+
+theme/custom="uid://t2kphxi3arin"
+theme/custom_font="uid://1b6k18kghy2a"
+
 [input]
 
 left_mouse={

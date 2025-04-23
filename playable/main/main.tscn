@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlta5f0tklkad"]
+[gd_scene load_steps=6 format=3 uid="uid://dlta5f0tklkad"]
 
 [ext_resource type="Script" uid="uid://dw3ofaehia5ax" path="res://playable/main/main.gd" id="1_htdf5"]
 [ext_resource type="Script" uid="uid://lhvr60dl8orx" path="res://playable/main/camera.gd" id="3_1udd7"]
 [ext_resource type="Script" uid="uid://c5i4e1bx24ubs" path="res://playable/puzzle/puzzle.gd" id="4_0gp2c"]
 [ext_resource type="Script" uid="uid://dy218p20kt8ot" path="res://playable/puzzle/puzzle_generator.gd" id="5_nw5vk"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ei8xv"]
+color = Color(0.78564, 0.785641, 0.78564, 1)
+grow_begin = 2.0
+grow_end = -2.0
+thickness = 2
 
 [node name="Node2D" type="Node"]
 script = ExtResource("1_htdf5")
@@ -123,18 +129,68 @@ size_flags_vertical = 8
 theme_override_font_sizes/font_size = 50
 text = "Next Level"
 
-[node name="Rules" type="Label" parent="Ui/margin"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 200)
+[node name="Rules" type="VBoxContainer" parent="Ui/margin"]
+custom_minimum_size = Vector2(392.71, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+
+[node name="Title" type="Label" parent="Ui/margin/Rules"]
+layout_mode = 2
+text = "Puzzle Rules"
+
+[node name="HSeparator" type="HSeparator" parent="Ui/margin/Rules"]
+layout_mode = 2
+theme_override_constants/separation = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_ei8xv")
+
+[node name="BulletPoints" type="VBoxContainer" parent="Ui/margin/Rules"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Bullet1" type="HBoxContainer" parent="Ui/margin/Rules/BulletPoints"]
+layout_mode = 2
+
+[node name="Num" type="Label" parent="Ui/margin/Rules/BulletPoints/Bullet1"]
+layout_mode = 2
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 30
-text = "Puzzle Rules  
+text = "• "
 
-1) Each row & column must contain exactly 3 SUN and 3 MOON.  
+[node name="Text" type="Label" parent="Ui/margin/Rules/BulletPoints/Bullet1"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fill the Grid"
+autowrap_mode = 2
 
-2) No 3 SUN or 3 MOON can appear consecutively in any row or column.  "
+[node name="Bullet2" type="HBoxContainer" parent="Ui/margin/Rules/BulletPoints"]
+layout_mode = 2
+
+[node name="Num" type="Label" parent="Ui/margin/Rules/BulletPoints/Bullet2"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "• "
+
+[node name="Text" type="Label" parent="Ui/margin/Rules/BulletPoints/Bullet2"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Each row & column must contain exactly 3 Suns and 3 Moons"
+autowrap_mode = 2
+
+[node name="Bullet3" type="HBoxContainer" parent="Ui/margin/Rules/BulletPoints"]
+layout_mode = 2
+
+[node name="Num" type="Label" parent="Ui/margin/Rules/BulletPoints/Bullet3"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "• "
+
+[node name="Text" type="Label" parent="Ui/margin/Rules/BulletPoints/Bullet3"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "No 3 Suns or 3 Moons can appear consecutively in any row or column"
 autowrap_mode = 2
 
 [connection signal="pressed" from="Ui/margin/Retry" to="." method="_on_retry_pressed"]

@@ -13,6 +13,16 @@ extends Control
 func _ready():
 	_update_latest_save_picture()
 	_toggle_buttons()
+	
+	if OS.has_feature("web"):
+		exit.hide()
+	else:
+		exit.pressed.connect(_on_exit_button_pressed)
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()
+
 
 func _get_latest_save():
 	var dir := DirAccess.open(SaveGameDlg.SAVE_GAME_FOLDER)
@@ -25,10 +35,11 @@ func _get_latest_save():
 		if file_name.ends_with(".json"):
 			files.append(file_name.get_basename())
 		file_name = dir.get_next()
-
+	
 	files.sort()
 	files.reverse()
 	return files[0] if files.size() > 0 else ""
+
 
 func _update_latest_save_picture():
 	var latest_save = _get_latest_save()
@@ -43,12 +54,13 @@ func _update_latest_save_picture():
 	
 	picture.texture = defult_image
 
+
 func _toggle_buttons():
 	var has_save = _get_latest_save() != ""
 	continue_game.visible = has_save
 	new_game.visible = !has_save
 	option.visible = false
-	exit.visible = true
+
 
 func _on_ContinueGameBtn_pressed():
 	var latest_save = _get_latest_save()
@@ -57,14 +69,17 @@ func _on_ContinueGameBtn_pressed():
 		Save_Service.load_game_state(save_file_name, Transition_Manager.transition_to)
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+
 func _on_NewGameBtn_pressed():
 	Save_Service.new_game()
 	Transition_Manager.transition_to(main_scene)
+
 
 func _on_OptionBtn_pressed():
 	_delete_all_saves()
 	_toggle_buttons()
 	_update_latest_save_picture()
+
 
 func _delete_all_saves():
 	var dir := DirAccess.open(SaveGameDlg.SAVE_GAME_FOLDER)

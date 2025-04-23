@@ -17,6 +17,7 @@ var spawn_tweens: Array[Tween] = []
 
 func _ready():
 	load_level_progress()
+	@warning_ignore("integer_division")
 	var current_page_start := int(Game.current_level_index / LEVELS_PER_PAGE) * LEVELS_PER_PAGE
 	spawn_levels(current_page_start, LEVELS_PER_PAGE)
 
