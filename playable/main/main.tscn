@@ -1,15 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlta5f0tklkad"]
+[gd_scene load_steps=5 format=3 uid="uid://dlta5f0tklkad"]
 
 [ext_resource type="Script" uid="uid://dw3ofaehia5ax" path="res://playable/main/main.gd" id="1_htdf5"]
 [ext_resource type="Script" uid="uid://lhvr60dl8orx" path="res://playable/main/camera.gd" id="3_1udd7"]
 [ext_resource type="Script" uid="uid://c5i4e1bx24ubs" path="res://playable/puzzle/puzzle.gd" id="4_0gp2c"]
 [ext_resource type="Script" uid="uid://dy218p20kt8ot" path="res://playable/puzzle/puzzle_generator.gd" id="5_nw5vk"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_ei8xv"]
-color = Color(0.78564, 0.785641, 0.78564, 1)
-grow_begin = 2.0
-grow_end = -2.0
-thickness = 2
 
 [node name="Node2D" type="Node"]
 script = ExtResource("1_htdf5")
@@ -133,6 +127,7 @@ text = "Next Level"
 custom_minimum_size = Vector2(392.71, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="Title" type="Label" parent="Ui/margin/Rules"]
 layout_mode = 2
@@ -141,7 +136,6 @@ text = "Puzzle Rules"
 [node name="HSeparator" type="HSeparator" parent="Ui/margin/Rules"]
 layout_mode = 2
 theme_override_constants/separation = 3
-theme_override_styles/separator = SubResource("StyleBoxLine_ei8xv")
 
 [node name="BulletPoints" type="VBoxContainer" parent="Ui/margin/Rules"]
 layout_mode = 2

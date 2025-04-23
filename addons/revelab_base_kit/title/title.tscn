@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8ndj7bvsf8pv"]
+[gd_scene load_steps=5 format=3 uid="uid://c8ndj7bvsf8pv"]
 
 [ext_resource type="Script" uid="uid://d4g3d4l77qnq7" path="res://addons/revelab_base_kit/title/title.gd" id="1_8exur"]
 [ext_resource type="PackedScene" uid="uid://bclfk72fg3iai" path="res://addons/revelab_base_kit/save_load_ui/save_load_dialogues/load_game_dlg.tscn" id="2_gcri8"]
+[ext_resource type="Texture2D" uid="uid://bkyde135xjmyu" path="res://assets/symbols/Moon.png" id="3_bag4r"]
+[ext_resource type="Texture2D" uid="uid://d388riro8h012" path="res://assets/symbols/Sun.png" id="4_1gbs2"]
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -80,6 +82,7 @@ vertical_alignment = 2
 [node name="HSeparator" type="HSeparator" parent="Menu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_constants/separation = 0
 
 [node name="Button_container" type="HBoxContainer" parent="Menu/VBoxContainer"]
 layout_mode = 2
@@ -122,6 +125,24 @@ size_flags_vertical = 4
 focus_mode = 0
 theme_override_font_sizes/font_size = 50
 text = "Exit"
+
+[node name="TextureRect" type="TextureRect" parent="Menu"]
+visible = false
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("3_bag4r")
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="Menu"]
+visible = false
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("4_1gbs2")
+stretch_mode = 4
 
 [connection signal="pressed" from="Menu/VBoxContainer/Button_container/new_game" to="." method="_on_NewGameBtn_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Button_container/continue_game" to="." method="_on_ContinueGameBtn_pressed"]

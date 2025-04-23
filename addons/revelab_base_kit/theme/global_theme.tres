@@ -1,4 +1,11 @@
-[gd_resource type="Theme" format=3 uid="uid://t2kphxi3arin"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://t2kphxi3arin"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ei8xv"]
+color = Color(0.78564, 0.785641, 0.78564, 1)
+grow_begin = 2.0
+grow_end = -2.0
+thickness = 2
 
 [resource]
+HSeparator/styles/separator = SubResource("StyleBoxLine_ei8xv")
 Label/font_sizes/font_size = 30
