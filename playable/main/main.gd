@@ -35,4 +35,4 @@ func start_level() -> void:
 func _on_puzzle_completed() -> void:
 	level_clear.visible = true
 	next_level.visible = true
-	retry_button.visible = false
+	#retry_button.visible = false
