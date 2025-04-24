@@ -23,13 +23,14 @@ var locked: bool = false
 signal value_changed(new_value: int)
 
 var SYMBOLS := {
-	0: { "texture": MOON, "color": "#a4d6f8" },
-	1: { "texture": SUN, "color": "#ffd965" },
-	2: { "texture": RAIN, "color": "#89CFF0" },
-	3: { "texture": SNOW, "color": "#ffffff" },
-	4: { "texture": THUNDER, "color": "#ffd700" },
-	5: { "texture": WIND, "color": "#b0e0e6" }
+	0: { "texture": MOON, "color": "#a4d6f8" },        
+	1: { "texture": SUN, "color": "#ffd965" },        
+	2: { "texture": RAIN, "color": "#00bfff" },        
+	3: { "texture": SNOW, "color": "#00f0ff" },       
+	4: { "texture": THUNDER, "color": "#bf40bf" },     
+	5: { "texture": WIND, "color": "#7fffd4" }        
 }
+
 
 @export var moon_color: String = "#a4d6f8"
 @export var sun_color: String = "#ffd965"
@@ -57,6 +58,13 @@ func set_grid(num: int, valid_values: Array):
 		is_default_piece = false
 		value = -1
 
+	update_visuals()
+
+func set_input_value(new_value: int) -> void:
+	if is_default_piece:
+		return
+
+	value = new_value
 	update_visuals()
 
 

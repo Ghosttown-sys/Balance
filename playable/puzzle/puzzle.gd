@@ -7,15 +7,17 @@ const GRID = preload("res://playable/grid/Grid.tscn")
 @onready var puzzle_generator: PUZZLE_GENERATOR = %puzzle_generator
 
 var puzzle := {}
-var user_values := []  
+var user_values := []
+var undo_stack: Array = []
+var redo_stack: Array = []
 signal puzzle_completed
 
 #region Initialization and Setup
-func set_puzzle(level: int, difficulty: float, complexcity:int):
+func set_puzzle(level: int, difficulty: float, complexcity: int):
 	clear_puzzle()
-	puzzle = puzzle_generator.generate_puzzle(level, difficulty,complexcity)
+	puzzle = puzzle_generator.generate_puzzle(level, difficulty, complexcity)
 	user_values.resize(6)
-	
+
 	for y in range(6):
 		user_values[y] = []
 		for x in range(6):
@@ -24,7 +26,7 @@ func set_puzzle(level: int, difficulty: float, complexcity:int):
 			user_values[y].append(value)
 
 			var cell_problem = GRID.instantiate()
-			cell_problem.set_grid(value,valid_input)
+			cell_problem.set_grid(value, valid_input)
 			problem_puzzle.add_child(cell_problem)
 
 			var cell_x := x
@@ -36,48 +38,97 @@ func set_puzzle(level: int, difficulty: float, complexcity:int):
 
 #region Value Update and Checks
 func update_value(x: int, y: int, new_value: int) -> void:
+	var old_value = user_values[y][x]
+	if old_value == new_value:
+		return
+
+	# Record move
+	undo_stack.append({ "x": x, "y": y, "old": old_value, "new": new_value })
+	if undo_stack.size() > 100:
+		undo_stack.pop_front()
+	redo_stack.clear()
+
 	user_values[y][x] = new_value
 	highlight_row_and_col(x, y)
-	
+
+	var cell = problem_puzzle.get_child(y * 6 + x)
+	cell.set_input_value(new_value)
+
 	if is_row_valid(y) and is_col_valid(x):
 		check_for_win()
+#endregion
+
+#region Undo / Redo
+func undo():
+	if undo_stack.is_empty():
+		return
+
+	var move = undo_stack.pop_back()
+	var x = move["x"]
+	var y = move["y"]
+	var old_value = move["old"]
+	var new_value = user_values[y][x]
+
+	user_values[y][x] = old_value
+	redo_stack.append({ "x": x, "y": y, "old": new_value, "new": old_value })
+
+	var cell = problem_puzzle.get_child(y * 6 + x)
+	cell.set_input_value(old_value)
+	highlight_row_and_col(x, y)
+
+func redo():
+	if redo_stack.is_empty():
+		return
+
+	var move = redo_stack.pop_back()
+	var x = move["x"]
+	var y = move["y"]
+	var new_value = move["new"]
+	var old_value = user_values[y][x]
+
+	user_values[y][x] = new_value
+	undo_stack.append({ "x": x, "y": y, "old": old_value, "new": new_value })
+
+	var cell = problem_puzzle.get_child(y * 6 + x)
+	cell.set_input_value(new_value)
+	highlight_row_and_col(x, y)
 #endregion
 
 #region Validation Helpers
 func is_row_valid(y: int) -> bool:
 	var row_ones = 0
 	var row_zeros = 0
-	
+
 	for i in range(6):
 		match user_values[y][i]:
 			1: row_ones += 1
 			0: row_zeros += 1
-	
+
 	if row_ones > 3 or row_zeros > 3:
 		return false
-	
+
 	return !has_consecutive_threes(user_values[y])
 
 func is_col_valid(x: int) -> bool:
 	var col_ones = 0
 	var col_zeros = 0
 	var column = []
-	
+
 	for i in range(6):
 		column.append(user_values[i][x])
 		match user_values[i][x]:
 			1: col_ones += 1
 			0: col_zeros += 1
-	
+
 	if col_ones > 3 or col_zeros > 3:
 		return false
-	
+
 	return !has_consecutive_threes(column)
 
 func has_consecutive_threes(line: Array) -> bool:
 	var consecutive_ones = 0
 	var consecutive_zeros = 0
-	
+
 	for val in line:
 		match val:
 			1:
@@ -89,10 +140,10 @@ func has_consecutive_threes(line: Array) -> bool:
 			_:
 				consecutive_ones = 0
 				consecutive_zeros = 0
-		
+
 		if consecutive_ones == 3 or consecutive_zeros == 3:
 			return true
-	
+
 	return false
 #endregion
 
@@ -102,19 +153,14 @@ func highlight_row_and_col(x: int, y: int) -> void:
 	if !is_row_valid(y):
 		for i in range(6):
 			animate_error_flash(problem_puzzle.get_child(y * 6 + i))
-			#problem_puzzle.get_child(y * 6 + i).show_error(true)
-	
-	# Check and highlight invalid columns
+
 	if !is_col_valid(x):
 		for i in range(6):
 			animate_error_flash(problem_puzzle.get_child(i * 6 + x))
-			#problem_puzzle.get_child(i * 6 + x).show_error(true)
 
 func clear_row_and_col(x: int, y: int) -> void:
 	for i in range(6):
-		
 		problem_puzzle.get_child(y * 6 + i).show_error(false)
-	for i in range(6):
 		problem_puzzle.get_child(i * 6 + x).show_error(false)
 #endregion
 
@@ -124,11 +170,11 @@ func check_for_win() -> void:
 		for x in range(6):
 			if user_values[y][x] == -1:
 				return
-	
+
 	for i in range(6):
 		if !is_row_valid(i) or !is_col_valid(i):
 			return
-	
+
 	lock_all_cells()
 
 func lock_all_cells() -> void:
@@ -140,6 +186,8 @@ func clear_puzzle() -> void:
 	for child in problem_puzzle.get_children():
 		child.queue_free()
 	user_values.clear()
+	undo_stack.clear()
+	redo_stack.clear()
 
 #region Tween Animations - Completely Isolated
 var active_tweens: Array[Tween] = []

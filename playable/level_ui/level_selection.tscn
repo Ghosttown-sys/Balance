@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjwtes1a3ykua"]
 
 [ext_resource type="Script" uid="uid://btny621oeoken" path="res://playable/level_ui/level_selection.gd" id="1_x32ap"]
-[ext_resource type="PackedScene" path="res://playable/level_ui/levels.tscn" id="2_x32ap"]
+[ext_resource type="PackedScene" uid="uid://dr5bnburwost2" path="res://playable/level_ui/levels.tscn" id="2_x32ap"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("level_holder")]
 layout_mode = 3

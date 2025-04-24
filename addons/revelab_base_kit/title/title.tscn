@@ -97,7 +97,7 @@ size_flags_vertical = 4
 focus_mode = 0
 theme_override_constants/h_separation = 10
 theme_override_font_sizes/font_size = 50
-text = "New Game"
+text = "  Play  "
 
 [node name="continue_game" type="Button" parent="Menu/VBoxContainer/Button_container"]
 unique_name_in_owner = true
