@@ -20,15 +20,16 @@ func _ready():
 
 func update_texts():
 	if showing_rules:
+		title.text = "Controls"
+		rule_1.text = "1. Left click to cycle through icons"
+		rule_2.text = "2. Right click to remove symbols"
+		rule_3.text = "3. Click retry or next below to reset or go to next level"
+		
+	else:
 		title.text = "Puzzle Rules"
 		rule_1.text = "1. Fill the Grid"
 		rule_2.text = "2. Each row & column must contain exactly 3 Suns and 3 Moons"
 		rule_3.text = "3. No 3 Suns or 3 Moons can appear consecutively in any row or column"
-	else:
-		title.text = "Controls"
-		rule_1.text = "• Left click to cycle through icons"
-		rule_2.text = "• Right click to remove symbols"
-		rule_3.text = "• Click retry or next below to reset or go to next level"
 
 func _on_animation_timer_timeout():
 	if is_animating:

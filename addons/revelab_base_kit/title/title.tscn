@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8ndj7bvsf8pv"]
+[gd_scene load_steps=12 format=3 uid="uid://c8ndj7bvsf8pv"]
 
 [ext_resource type="Script" uid="uid://d4g3d4l77qnq7" path="res://addons/revelab_base_kit/title/title.gd" id="1_8exur"]
 [ext_resource type="PackedScene" uid="uid://bclfk72fg3iai" path="res://addons/revelab_base_kit/save_load_ui/save_load_dialogues/load_game_dlg.tscn" id="2_gcri8"]
 [ext_resource type="Texture2D" uid="uid://bkyde135xjmyu" path="res://assets/symbols/Moon.png" id="3_bag4r"]
 [ext_resource type="Texture2D" uid="uid://d388riro8h012" path="res://assets/symbols/Sun.png" id="4_1gbs2"]
+[ext_resource type="Texture2D" uid="uid://bjletvf5v2u58" path="res://assets/symbols/inactive/Moon.png" id="5_8646l"]
+[ext_resource type="Script" uid="uid://d37f06m33mdua" path="res://addons/revelab_base_kit/title/node.gd" id="5_i8y5f"]
+[ext_resource type="Texture2D" uid="uid://dp2rjypyudtrq" path="res://assets/symbols/inactive/Rain.png" id="6_i8y5f"]
+[ext_resource type="Texture2D" uid="uid://28rb2dae432f" path="res://assets/symbols/inactive/Snow.png" id="7_o0w3x"]
+[ext_resource type="Texture2D" uid="uid://celv4fk3su3sm" path="res://assets/symbols/inactive/Sun.png" id="8_jhds2"]
+[ext_resource type="Texture2D" uid="uid://cbdtuy2dui0o3" path="res://assets/symbols/inactive/Thunder.png" id="9_5tymx"]
+[ext_resource type="Texture2D" uid="uid://dtpsmwd6b8yg" path="res://assets/symbols/inactive/Wind.png" id="10_0tg6o"]
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -24,24 +31,28 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 
-[node name="Image_host" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = -619.0
-offset_right = 369.0
-offset_bottom = -279.0
-grow_vertical = 0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 624.0
+offset_top = 57.0
+offset_right = 1283.0
+offset_bottom = 625.0
+
+[node name="Image_host" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="picture" type="TextureRect" parent="Image_host"]
+[node name="picture" type="TextureRect" parent="VBoxContainer/Image_host"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
 
 [node name="LoadGameDlg" parent="." instance=ExtResource("2_gcri8")]
 visible = false
@@ -50,15 +61,22 @@ theme = null
 [node name="Menu" type="MarginContainer" parent="."]
 z_index = 500
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.0
+offset_top = -205.0
+offset_right = 358.0
+offset_bottom = 205.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 layout_mode = 2
@@ -78,6 +96,7 @@ theme_override_font_sizes/font_size = 200
 text = "Balance"
 horizontal_alignment = 1
 vertical_alignment = 2
+metadata/_edit_lock_ = true
 
 [node name="HSeparator" type="HSeparator" parent="Menu/VBoxContainer"]
 layout_mode = 2
@@ -145,6 +164,33 @@ size_flags_vertical = 4
 texture = ExtResource("4_1gbs2")
 stretch_mode = 4
 
+[node name="Node" type="Node" parent="."]
+script = ExtResource("5_i8y5f")
+
+[node name="Moon" type="Sprite2D" parent="Node"]
+position = Vector2(656, 599)
+texture = ExtResource("5_8646l")
+
+[node name="Rain" type="Sprite2D" parent="Node"]
+position = Vector2(775, 600)
+texture = ExtResource("6_i8y5f")
+
+[node name="Snow" type="Sprite2D" parent="Node"]
+position = Vector2(888, 600)
+texture = ExtResource("7_o0w3x")
+
+[node name="Sun" type="Sprite2D" parent="Node"]
+position = Vector2(1006, 601)
+texture = ExtResource("8_jhds2")
+
+[node name="Thunder" type="Sprite2D" parent="Node"]
+position = Vector2(1138, 601)
+texture = ExtResource("9_5tymx")
+
+[node name="Wind" type="Sprite2D" parent="Node"]
+position = Vector2(1249, 600)
+texture = ExtResource("10_0tg6o")
+
 [connection signal="pressed" from="Menu/VBoxContainer/Button_container/new_game" to="." method="_on_NewGameBtn_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/Button_container/continue_game" to="." method="_on_ContinueGameBtn_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Button_container/continue_game" to="." method="_on_NewGameBtn_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Button_container/option" to="." method="_on_OptionBtn_pressed"]

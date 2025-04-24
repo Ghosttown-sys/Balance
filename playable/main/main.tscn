@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlta5f0tklkad"]
+[gd_scene load_steps=7 format=3 uid="uid://dlta5f0tklkad"]
 
 [ext_resource type="Script" uid="uid://dw3ofaehia5ax" path="res://playable/main/main.gd" id="1_htdf5"]
 [ext_resource type="Script" uid="uid://lhvr60dl8orx" path="res://playable/main/camera.gd" id="3_1udd7"]
 [ext_resource type="Script" uid="uid://c5i4e1bx24ubs" path="res://playable/puzzle/puzzle.gd" id="4_0gp2c"]
 [ext_resource type="Script" uid="uid://181pn1qpn17v" path="res://playable/main/margin.gd" id="5_8k6o0"]
 [ext_resource type="Script" uid="uid://dy218p20kt8ot" path="res://playable/puzzle/puzzle_generator.gd" id="5_nw5vk"]
+[ext_resource type="PackedScene" uid="uid://b0g1p66e4x31u" path="res://addons/revelab_base_kit/save_load_ui/pause/pause_dialog.tscn" id="6_htdf5"]
 
 [node name="Node2D" type="Node"]
 script = ExtResource("1_htdf5")
@@ -87,15 +88,6 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("5_8k6o0")
-
-[node name="Level Clear" type="Label" parent="Ui/margin"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 50
-text = "Level Clear"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Ui/margin"]
 layout_mode = 2
@@ -201,6 +193,15 @@ vertical_alignment = 2
 layout_mode = 2
 theme_override_constants/separation = 8
 
+[node name="Level Clear" type="Label" parent="Ui/margin/Level"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "Level Clear"
+
 [node name="Next_Level" type="Button" parent="Ui/margin/Level"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -226,5 +227,46 @@ theme_override_font_sizes/font_size = 50
 text = "Exit"
 alignment = 0
 
+[node name="PauseDialogue" parent="." instance=ExtResource("6_htdf5")]
+visible = false
+
+[node name="Control" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Difficulty :"
+
+[node name="difficulty" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0.1"
+horizontal_alignment = 1
+
+[node name="Diifculty_Slider" type="HSlider" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+ticks_on_borders = true
+
 [connection signal="pressed" from="Ui/margin/Level/Next_Level" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="Ui/margin/Level/Retry" to="." method="_on_retry_pressed"]
+[connection signal="drag_ended" from="Control/VBoxContainer/Diifculty_Slider" to="." method="_on_diifculty_slider_drag_ended"]
+[connection signal="value_changed" from="Control/VBoxContainer/Diifculty_Slider" to="." method="_on_diifculty_slider_value_changed"]

@@ -62,13 +62,12 @@ func _toggle_buttons():
 	option.visible = false
 
 
-func _on_ContinueGameBtn_pressed():
-	var latest_save = _get_latest_save()
-	if latest_save != "":
-		var save_file_name = SaveGameDlg.SAVE_GAME_FOLDER + "/" + latest_save + ".json"
-		Save_Service.load_game_state(save_file_name, Transition_Manager.transition_to)
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+#func _on_ContinueGameBtn_pressed():
+	#var latest_save = _get_latest_save()
+	#if latest_save != "":
+		#var save_file_name = SaveGameDlg.SAVE_GAME_FOLDER + "/" + latest_save + ".json"
+		#Save_Service.load_game_state(save_file_name, Transition_Manager.transition_to)
+#
 
 func _on_NewGameBtn_pressed():
 	Save_Service.new_game()

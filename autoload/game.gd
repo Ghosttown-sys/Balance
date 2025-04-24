@@ -15,6 +15,7 @@ var player_name := ""
 var current_score := 0
 var high_score := 0
 
+var current_difficulty := 0.0
 var transition_level := 0
 
 func _ready():
@@ -50,7 +51,8 @@ func complete_current_level():
 func save_progress():
 	var progress_data = {
 		"current_level_index": current_level_index,
-		"tutorials_completed": tutorials_completed
+		"tutorials_completed": tutorials_completed,
+		"current_difficulty" : current_difficulty
 	}
 	var file = FileAccess.open(PROGRESS_PATH, FileAccess.WRITE)
 	file.store_line(JSON.stringify(progress_data))
@@ -68,14 +70,13 @@ func load_progress():
 	if progress_data:
 		current_level_index = progress_data.get("current_level_index", 0)
 		tutorials_completed = progress_data.get("tutorials_completed", false)
+		current_difficulty = progress_data.get("current_difficulty",0.0)
 
 func save_data():
-	@warning_ignore("shadowed_variable")
 	var save_data = {
 		"player_name": player_name,
-		"high_score": high_score
+		"high_score": high_score,
 	}
-	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	file.store_line(JSON.stringify(save_data))
 	file.close()
@@ -93,7 +94,6 @@ func load_data():
 		player_name = data.get("player_name", "")
 		high_score = data.get("high_score", 0)
 
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		if get_tree().paused:
@@ -101,10 +101,8 @@ func _input(event: InputEvent) -> void:
 		else:
 			game_paused.emit()
 
-
 func _on_game_paused() -> void:
 	get_tree().paused = true
-
 
 func _on_game_unpaused() -> void:
 	get_tree().paused = false

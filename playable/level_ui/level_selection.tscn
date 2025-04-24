@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjwtes1a3ykua"]
+[gd_scene load_steps=2 format=3 uid="uid://cjwtes1a3ykua"]
 
 [ext_resource type="Script" uid="uid://btny621oeoken" path="res://playable/level_ui/level_selection.gd" id="1_x32ap"]
-[ext_resource type="PackedScene" uid="uid://dr5bnburwost2" path="res://playable/level_ui/levels.tscn" id="2_x32ap"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("level_holder")]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,20 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x32ap")
-level_holder = NodePath("levels")
-main_scene = "uid://dlta5f0tklkad"
-
-[node name="levels" parent="." instance=ExtResource("2_x32ap")]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = -271.0
-offset_right = 5.0
-offset_bottom = -271.0
-grow_vertical = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

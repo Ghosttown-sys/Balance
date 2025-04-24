@@ -52,7 +52,7 @@ func try_generate_board() -> Array:
 
 func create_solvable_puzzle(board: Array, difficulty: float) -> int:
 	var cells_to_keep = int(36 * (1.0 - difficulty))
-	cells_to_keep = clamp(cells_to_keep, 8, 30)
+	cells_to_keep = clamp(cells_to_keep, 12, 30)
 
 	var max_per_line := int(lerp(6.0, 2.0, difficulty))
 
