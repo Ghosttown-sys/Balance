@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://tyr0jsfpx8hn"]
+
+[ext_resource type="Script" uid="uid://brapu7egej03q" path="res://autoload/music.gd" id="1_vnik8"]
+[ext_resource type="AudioStream" uid="uid://dpduuqjjulgrw" path="res://assets/music/relaxing-piano-music-123845.mp3" id="2_vnik8"]
+[ext_resource type="AudioStream" uid="uid://cxyod5vxmiewu" path="res://assets/music/pop-cartoon-328167.mp3" id="3_vnik8"]
+
+[node name="Music" type="Node"]
+script = ExtResource("1_vnik8")
+
+[node name="back_ground" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vnik8")
+volume_db = -5.622
+autoplay = true
+
+[node name="pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vnik8")
+volume_db = -28.338

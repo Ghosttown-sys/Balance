@@ -18,3 +18,6 @@ func _process(_delta: float) -> void:
 	cursor.position = lerp(cursor.position, mouse_position, 0.25)
 	parent.mouse_position = cursor.position
 	
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("left_mouse") or Input.is_action_just_pressed("right_mouse") or Input.is_action_just_pressed("middle_mouse"):
+		Music.play_pop()

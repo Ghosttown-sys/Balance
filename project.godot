@@ -23,6 +23,7 @@ Mouse_Controller="*res://game_systems/ui_components/mouse_controllers/mouse_cont
 Game="*res://autoload/game.gd"
 Save_Service="*res://addons/revelab_base_kit/auto_loads/save_service.gd"
 Transition_Manager="*res://addons/revelab_base_kit/auto_loads/transition_manager.tscn"
+Music="*res://autoload/music.tscn"
 
 [display]
 

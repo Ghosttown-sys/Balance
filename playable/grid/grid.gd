@@ -23,8 +23,8 @@ var locked: bool = false
 signal value_changed(new_value: int)
 
 var SYMBOLS := {
-	0: { "texture": MOON, "color": "#a4d6f8" },        
-	1: { "texture": SUN, "color": "#ffd965" },        
+	0: { "texture": SUN, "color": "#ffd965" },        
+	1: { "texture": MOON, "color": "#a4d6f8" },        
 	2: { "texture": RAIN, "color": "#00bfff" },        
 	3: { "texture": SNOW, "color": "#00f0ff" },       
 	4: { "texture": THUNDER, "color": "#bf40bf" },     
