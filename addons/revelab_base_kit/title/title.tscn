@@ -82,6 +82,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 30
 
 [node name="Logo" type="HBoxContainer" parent="Menu/VBoxContainer"]
 layout_mode = 2
@@ -168,27 +169,27 @@ stretch_mode = 4
 script = ExtResource("5_i8y5f")
 
 [node name="Moon" type="Sprite2D" parent="Node"]
-position = Vector2(656, 599)
+position = Vector2(658, 583)
 texture = ExtResource("5_8646l")
 
 [node name="Rain" type="Sprite2D" parent="Node"]
-position = Vector2(775, 600)
+position = Vector2(777, 584)
 texture = ExtResource("6_i8y5f")
 
 [node name="Snow" type="Sprite2D" parent="Node"]
-position = Vector2(888, 600)
+position = Vector2(890, 584)
 texture = ExtResource("7_o0w3x")
 
 [node name="Sun" type="Sprite2D" parent="Node"]
-position = Vector2(1006, 601)
+position = Vector2(1008, 585)
 texture = ExtResource("8_jhds2")
 
 [node name="Thunder" type="Sprite2D" parent="Node"]
-position = Vector2(1138, 601)
+position = Vector2(1140, 585)
 texture = ExtResource("9_5tymx")
 
 [node name="Wind" type="Sprite2D" parent="Node"]
-position = Vector2(1249, 600)
+position = Vector2(1251, 584)
 texture = ExtResource("10_0tg6o")
 
 [connection signal="pressed" from="Menu/VBoxContainer/Button_container/new_game" to="." method="_on_NewGameBtn_pressed"]

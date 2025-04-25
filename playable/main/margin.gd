@@ -13,7 +13,7 @@ var is_animating := false
 func _ready():
 	update_texts()
 
-	animation_timer.wait_time = 5.0
+	animation_timer.wait_time = 6.0
 	animation_timer.start()
 	
 	animation_timer.timeout.connect(_on_animation_timer_timeout)
@@ -23,7 +23,7 @@ func update_texts():
 		title.text = "Controls"
 		rule_1.text = "1. Left click to cycle through icons"
 		rule_2.text = "2. Right click to remove symbols"
-		rule_3.text = "3. Click retry or next below to reset or go to next level"
+		rule_3.text = "3. Adjust difficulty in the right side slider , Click Retry to retry level , Next to go next level ! "
 		
 	else:
 		title.text = "Puzzle Rules"
@@ -43,15 +43,15 @@ func _on_animation_timer_timeout():
 	tween = create_tween()
 	tween.set_parallel(true)
 	
-	tween.tween_property(title, "modulate:a", 0.0, 0.5)
-	tween.tween_property(rule_1, "modulate:a", 0.0, 0.5)
-	tween.tween_property(rule_2, "modulate:a", 0.0, 0.5)
-	tween.tween_property(rule_3, "modulate:a", 0.0, 0.5)
+	tween.tween_property(title, "modulate:a", 0.0, 0.6)
+	tween.tween_property(rule_1, "modulate:a", 0.0, 0.6)
+	tween.tween_property(rule_2, "modulate:a", 0.0, 0.6)
+	tween.tween_property(rule_3, "modulate:a", 0.0, 0.6)
 	tween.chain().tween_callback(update_texts)
-	tween.tween_property(title, "modulate:a", 1.0, 0.5)
-	tween.tween_property(rule_1, "modulate:a", 1.0, 0.5)
-	tween.tween_property(rule_2, "modulate:a", 1.0, 0.5)
-	tween.tween_property(rule_3, "modulate:a", 1.0, 0.5)
+	tween.tween_property(title, "modulate:a", 1.0, 0.6)
+	tween.tween_property(rule_1, "modulate:a", 1.0, 0.6)
+	tween.tween_property(rule_2, "modulate:a", 1.0, 0.6)
+	tween.tween_property(rule_3, "modulate:a", 1.0, 0.6)
 	
 	tween.chain().tween_callback(_on_animation_complete)
 
