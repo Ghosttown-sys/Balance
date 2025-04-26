@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlta5f0tklkad"]
+[gd_scene load_steps=9 format=3 uid="uid://dlta5f0tklkad"]
 
 [ext_resource type="Script" uid="uid://dw3ofaehia5ax" path="res://playable/main/main.gd" id="1_htdf5"]
 [ext_resource type="Script" uid="uid://lhvr60dl8orx" path="res://playable/main/camera.gd" id="3_1udd7"]
@@ -7,31 +7,36 @@
 [ext_resource type="Script" uid="uid://dy218p20kt8ot" path="res://playable/puzzle/puzzle_generator.gd" id="5_nw5vk"]
 [ext_resource type="PackedScene" uid="uid://b0g1p66e4x31u" path="res://addons/revelab_base_kit/save_load_ui/pause/pause_dialog.tscn" id="6_htdf5"]
 
+[sub_resource type="Gradient" id="Gradient_htdf5"]
+offsets = PackedFloat32Array(0, 0.0372671)
+colors = PackedColorArray(0.0708272, 0.0708272, 0.0708272, 1, 0.0901961, 0.0901961, 0.0901961, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3g0m4"]
+gradient = SubResource("Gradient_htdf5")
+width = 128
+
 [node name="Node2D" type="Node"]
 script = ExtResource("1_htdf5")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -6
-anchors_preset = -1
-anchor_right = 0.25
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-color = Color(0.0904824, 0.0904823, 0.0904823, 1)
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-z_index = -6
+[node name="Right" type="TextureRect" parent="."]
 anchors_preset = -1
 anchor_left = 0.75
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-color = Color(0.0904824, 0.0904823, 0.0904823, 1)
+texture = SubResource("GradientTexture2D_3g0m4")
+expand_mode = 1
+
+[node name="Left" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_3g0m4")
+expand_mode = 1
+flip_h = true
 
 [node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true
