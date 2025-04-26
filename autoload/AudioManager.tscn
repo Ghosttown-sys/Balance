@@ -24,3 +24,9 @@ stream = SubResource("AudioStreamRandomizer_vnik8")
 volume_db = -28.338
 max_polyphony = 3
 bus = &"Sound Effects"
+
+[node name="ErrorSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_vnik8")
+volume_db = -28.338
+max_polyphony = 3
+bus = &"Sound Effects"

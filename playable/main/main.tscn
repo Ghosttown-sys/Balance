@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlta5f0tklkad"]
+[gd_scene load_steps=10 format=3 uid="uid://dlta5f0tklkad"]
 
 [ext_resource type="Script" uid="uid://dw3ofaehia5ax" path="res://playable/main/main.gd" id="1_htdf5"]
 [ext_resource type="Script" uid="uid://lhvr60dl8orx" path="res://playable/main/camera.gd" id="3_1udd7"]
 [ext_resource type="Script" uid="uid://c5i4e1bx24ubs" path="res://playable/puzzle/puzzle.gd" id="4_0gp2c"]
 [ext_resource type="Script" uid="uid://181pn1qpn17v" path="res://playable/main/margin.gd" id="5_8k6o0"]
 [ext_resource type="Script" uid="uid://dy218p20kt8ot" path="res://playable/puzzle/puzzle_generator.gd" id="5_nw5vk"]
+[ext_resource type="Script" uid="uid://bmfsv3s00xm0p" path="res://addons/revelab_base_kit/ui_elements/audio_h_slider.gd" id="6_3g0m4"]
 [ext_resource type="PackedScene" uid="uid://b0g1p66e4x31u" path="res://addons/revelab_base_kit/save_load_ui/pause/pause_dialog.tscn" id="6_htdf5"]
 
 [sub_resource type="Gradient" id="Gradient_htdf5"]
@@ -25,6 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_3g0m4")
 expand_mode = 1
 
@@ -34,6 +36,7 @@ anchor_right = 0.25
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_3g0m4")
 expand_mode = 1
 flip_h = true
@@ -164,6 +167,7 @@ script = ExtResource("5_8k6o0")
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_constants/separation = 20
 
 [node name="Controls" type="VBoxContainer" parent="Ui/margin/VBoxContainer"]
 layout_mode = 2
@@ -379,9 +383,6 @@ modulate = Color(0.4, 0.4, 0.4, 1)
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="AnimationTimer" type="Timer" parent="Ui/margin"]
-unique_name_in_owner = true
-
 [node name="Level2" type="VBoxContainer" parent="Ui"]
 offset_left = 1540.0
 offset_top = 718.0
@@ -423,7 +424,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 50
-text = "Retry"
+text = "Reset"
 
 [node name="Exit" type="Button" parent="Ui/Level2"]
 unique_name_in_owner = true
@@ -447,10 +448,10 @@ theme_override_constants/separation = 8
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -399.0
-offset_top = 73.0
-offset_right = 2.0
-offset_bottom = 382.0
+offset_left = -463.0
+offset_top = 12.0
+offset_right = -62.0
+offset_bottom = 348.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
@@ -509,6 +510,65 @@ modulate = Color(0.400698, 0.400698, 0.400698, 1)
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="VolumeControl" type="VBoxContainer" parent="Ui"]
+offset_left = 1457.0
+offset_top = 362.0
+offset_right = 1849.0
+offset_bottom = 658.0
+size_flags_vertical = 8
+
+[node name="Header" type="Label" parent="Ui/VolumeControl"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Volume "
+vertical_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="Ui/VolumeControl"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="HSeparator2" type="HSeparator" parent="Ui/VolumeControl"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Label" type="Label" parent="Ui/VolumeControl"]
+layout_mode = 2
+text = "Master"
+
+[node name="AudioHSlider" type="HSlider" parent="Ui/VolumeControl"]
+layout_mode = 2
+script = ExtResource("6_3g0m4")
+
+[node name="Label2" type="Label" parent="Ui/VolumeControl"]
+layout_mode = 2
+text = "Music"
+
+[node name="AudioHSlider2" type="HSlider" parent="Ui/VolumeControl"]
+layout_mode = 2
+script = ExtResource("6_3g0m4")
+bus_name = &"Music"
+
+[node name="Label3" type="Label" parent="Ui/VolumeControl"]
+layout_mode = 2
+text = "Sound Effects"
+
+[node name="AudioHSlider3" type="HSlider" parent="Ui/VolumeControl"]
+layout_mode = 2
+script = ExtResource("6_3g0m4")
+bus_name = &"Sound Effects"
+
+[node name="HSeparator3" type="HSeparator" parent="Ui/VolumeControl"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="HSeparator4" type="HSeparator" parent="Ui/VolumeControl"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+layout_mode = 2
+theme_override_constants/separation = 3
 
 [node name="PauseDialogue" parent="." instance=ExtResource("6_htdf5")]
 visible = false
