@@ -1,16 +1,63 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8ndj7bvsf8pv"]
+[gd_scene load_steps=17 format=3 uid="uid://c8ndj7bvsf8pv"]
 
 [ext_resource type="Script" uid="uid://d4g3d4l77qnq7" path="res://addons/revelab_base_kit/title/title.gd" id="1_8exur"]
 [ext_resource type="PackedScene" uid="uid://bclfk72fg3iai" path="res://addons/revelab_base_kit/save_load_ui/save_load_dialogues/load_game_dlg.tscn" id="2_gcri8"]
 [ext_resource type="Texture2D" uid="uid://bkyde135xjmyu" path="res://assets/symbols/Moon.png" id="3_bag4r"]
 [ext_resource type="Texture2D" uid="uid://d388riro8h012" path="res://assets/symbols/Sun.png" id="4_1gbs2"]
-[ext_resource type="Texture2D" uid="uid://bjletvf5v2u58" path="res://assets/symbols/inactive/Moon.png" id="5_8646l"]
 [ext_resource type="Script" uid="uid://d37f06m33mdua" path="res://addons/revelab_base_kit/title/node.gd" id="5_i8y5f"]
-[ext_resource type="Texture2D" uid="uid://dp2rjypyudtrq" path="res://assets/symbols/inactive/Rain.png" id="6_i8y5f"]
-[ext_resource type="Texture2D" uid="uid://28rb2dae432f" path="res://assets/symbols/inactive/Snow.png" id="7_o0w3x"]
-[ext_resource type="Texture2D" uid="uid://celv4fk3su3sm" path="res://assets/symbols/inactive/Sun.png" id="8_jhds2"]
-[ext_resource type="Texture2D" uid="uid://cbdtuy2dui0o3" path="res://assets/symbols/inactive/Thunder.png" id="9_5tymx"]
-[ext_resource type="Texture2D" uid="uid://dtpsmwd6b8yg" path="res://assets/symbols/inactive/Wind.png" id="10_0tg6o"]
+[ext_resource type="Shader" uid="uid://bjnadr4wgj7lu" path="res://assets/shaders/pulse.gdshader" id="6_o0w3x"]
+[ext_resource type="Texture2D" uid="uid://bl1nbkcce8ryf" path="res://assets/symbols/Rain.png" id="7_8646l"]
+[ext_resource type="Texture2D" uid="uid://b1180nvtbu15o" path="res://assets/symbols/Snow.png" id="8_i8y5f"]
+[ext_resource type="Texture2D" uid="uid://cljbmhbsw4cqx" path="res://assets/symbols/Thunder.png" id="9_o0w3x"]
+[ext_resource type="Texture2D" uid="uid://bgk6ohrm4vaey" path="res://assets/symbols/Wind.png" id="10_jhds2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8y5f"]
+resource_local_to_scene = true
+shader = ExtResource("6_o0w3x")
+shader_parameter/start_color = Color(1, 1, 1, 1)
+shader_parameter/end_color = Color(0, 0, 0, 0)
+shader_parameter/speed = 1.0
+shader_parameter/start_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o0w3x"]
+resource_local_to_scene = true
+shader = ExtResource("6_o0w3x")
+shader_parameter/start_color = Color(1, 1, 1, 1)
+shader_parameter/end_color = Color(0, 0, 0, 0)
+shader_parameter/speed = 1.0
+shader_parameter/start_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jhds2"]
+resource_local_to_scene = true
+shader = ExtResource("6_o0w3x")
+shader_parameter/start_color = Color(1, 1, 1, 1)
+shader_parameter/end_color = Color(0, 0, 0, 0)
+shader_parameter/speed = 1.0
+shader_parameter/start_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tymx"]
+resource_local_to_scene = true
+shader = ExtResource("6_o0w3x")
+shader_parameter/start_color = Color(1, 1, 1, 1)
+shader_parameter/end_color = Color(0, 0, 0, 0)
+shader_parameter/speed = 1.0
+shader_parameter/start_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0tg6o"]
+resource_local_to_scene = true
+shader = ExtResource("6_o0w3x")
+shader_parameter/start_color = Color(1, 1, 1, 1)
+shader_parameter/end_color = Color(0, 0, 0, 0)
+shader_parameter/speed = 1.0
+shader_parameter/start_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_updra"]
+resource_local_to_scene = true
+shader = ExtResource("6_o0w3x")
+shader_parameter/start_color = Color(1, 1, 1, 1)
+shader_parameter/end_color = Color(0, 0, 0, 0)
+shader_parameter/speed = 1.5
+shader_parameter/start_offset = 0.0
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -165,32 +212,46 @@ size_flags_vertical = 4
 texture = ExtResource("4_1gbs2")
 stretch_mode = 4
 
-[node name="Node" type="Node" parent="."]
+[node name="Icons" type="Node" parent="." node_paths=PackedStringArray("SYMBOL_COLORS")]
 script = ExtResource("5_i8y5f")
+SYMBOL_COLORS = {
+NodePath("Moon"): Color(0.643137, 0.839216, 0.972549, 1),
+NodePath("Rain"): Color(1, 0.85098, 0.396078, 1),
+NodePath("Snow"): Color(0, 0.74902, 1, 1),
+NodePath("Sun"): Color(0, 0.941176, 1, 1),
+NodePath("Thunder"): Color(0.74902, 0.25098, 0.74902, 1),
+NodePath("Wind"): Color(0.498039, 1, 0.831373, 1)
+}
 
-[node name="Moon" type="Sprite2D" parent="Node"]
+[node name="Moon" type="Sprite2D" parent="Icons"]
+material = SubResource("ShaderMaterial_i8y5f")
 position = Vector2(658, 583)
-texture = ExtResource("5_8646l")
+texture = ExtResource("3_bag4r")
 
-[node name="Rain" type="Sprite2D" parent="Node"]
+[node name="Rain" type="Sprite2D" parent="Icons"]
+material = SubResource("ShaderMaterial_o0w3x")
 position = Vector2(777, 584)
-texture = ExtResource("6_i8y5f")
+texture = ExtResource("7_8646l")
 
-[node name="Snow" type="Sprite2D" parent="Node"]
+[node name="Snow" type="Sprite2D" parent="Icons"]
+material = SubResource("ShaderMaterial_jhds2")
 position = Vector2(890, 584)
-texture = ExtResource("7_o0w3x")
+texture = ExtResource("8_i8y5f")
 
-[node name="Sun" type="Sprite2D" parent="Node"]
+[node name="Sun" type="Sprite2D" parent="Icons"]
+material = SubResource("ShaderMaterial_5tymx")
 position = Vector2(1008, 585)
-texture = ExtResource("8_jhds2")
+texture = ExtResource("4_1gbs2")
 
-[node name="Thunder" type="Sprite2D" parent="Node"]
+[node name="Thunder" type="Sprite2D" parent="Icons"]
+material = SubResource("ShaderMaterial_0tg6o")
 position = Vector2(1140, 585)
-texture = ExtResource("9_5tymx")
+texture = ExtResource("9_o0w3x")
 
-[node name="Wind" type="Sprite2D" parent="Node"]
+[node name="Wind" type="Sprite2D" parent="Icons"]
+material = SubResource("ShaderMaterial_updra")
 position = Vector2(1251, 584)
-texture = ExtResource("10_0tg6o")
+texture = ExtResource("10_jhds2")
 
 [connection signal="pressed" from="Menu/VBoxContainer/Button_container/new_game" to="." method="_on_NewGameBtn_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Button_container/continue_game" to="." method="_on_NewGameBtn_pressed"]
