@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dw3ofaehia5ax" path="res://playable/main/main.gd" id="1_htdf5"]
 [ext_resource type="Script" uid="uid://lhvr60dl8orx" path="res://playable/main/camera.gd" id="3_1udd7"]
 [ext_resource type="Script" uid="uid://c5i4e1bx24ubs" path="res://playable/puzzle/puzzle.gd" id="4_0gp2c"]
-[ext_resource type="Script" uid="uid://181pn1qpn17v" path="res://playable/main/margin.gd" id="5_8k6o0"]
+[ext_resource type="Script" uid="uid://gfnkylnvsqol" path="res://playable/main/ui.gd" id="5_3g0m4"]
 [ext_resource type="Script" uid="uid://dy218p20kt8ot" path="res://playable/puzzle/puzzle_generator.gd" id="5_nw5vk"]
 [ext_resource type="Script" uid="uid://bmfsv3s00xm0p" path="res://addons/revelab_base_kit/ui_elements/audio_h_slider.gd" id="6_3g0m4"]
 [ext_resource type="PackedScene" uid="uid://b0g1p66e4x31u" path="res://addons/revelab_base_kit/save_load_ui/pause/pause_dialog.tscn" id="6_htdf5"]
@@ -16,7 +16,7 @@ colors = PackedColorArray(0.0708272, 0.0708272, 0.0708272, 1, 0.0901961, 0.09019
 gradient = SubResource("Gradient_htdf5")
 width = 128
 
-[node name="Node2D" type="Node"]
+[node name="Main" type="Node"]
 script = ExtResource("1_htdf5")
 
 [node name="Right" type="TextureRect" parent="."]
@@ -57,6 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Puzzle/Puzzle_UI"]
 layout_mode = 1
@@ -71,6 +72,7 @@ offset_right = 560.0
 offset_bottom = 560.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 200
@@ -105,9 +107,10 @@ columns = 6
 unique_name_in_owner = true
 script = ExtResource("5_nw5vk")
 
-[node name="Ui" type="Node" parent="."]
+[node name="UI" type="Node" parent="."]
+script = ExtResource("5_3g0m4")
 
-[node name="Level" type="Label" parent="Ui"]
+[node name="Level" type="Label" parent="UI"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 anchors_preset = 5
@@ -124,7 +127,7 @@ text = "Level 1"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="HSeparator" type="HSeparator" parent="Ui/Level"]
+[node name="HSeparator" type="HSeparator" parent="UI/Level"]
 modulate = Color(0.4, 0.4, 0.4, 1)
 layout_mode = 1
 anchors_preset = 12
@@ -137,7 +140,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 3
 
-[node name="HSeparator2" type="HSeparator" parent="Ui/Level"]
+[node name="HSeparator2" type="HSeparator" parent="UI/Level"]
 modulate = Color(0.4, 0.4, 0.4, 1)
 layout_mode = 1
 anchors_preset = 12
@@ -150,8 +153,242 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 3
 
-[node name="margin" type="MarginContainer" parent="Ui"]
-anchors_preset = 15
+[node name="LeftPanel" type="MarginContainer" parent="UI"]
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LeftPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Controls" type="VBoxContainer" parent="UI/LeftPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="VBoxContainer" parent="UI/LeftPanel/VBoxContainer/Controls"]
+custom_minimum_size = Vector2(392.71, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HBox" type="HBoxContainer" parent="UI/LeftPanel/VBoxContainer/Controls/Header"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="UI/LeftPanel/VBoxContainer/Controls/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Controls"
+
+[node name="CloseButton2" type="Button" parent="UI/LeftPanel/VBoxContainer/Controls/Header/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_type_variation = &"EmptyButton"
+text = "-"
+
+[node name="HSeparator" type="HSeparator" parent="UI/LeftPanel/VBoxContainer/Controls/Header"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="HSeparator2" type="HSeparator" parent="UI/LeftPanel/VBoxContainer/Controls/Header"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="BulletPoints2" type="VBoxContainer" parent="UI/LeftPanel/VBoxContainer/Controls"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Bullet1" type="HBoxContainer" parent="UI/LeftPanel/VBoxContainer/Controls/BulletPoints2"]
+layout_mode = 2
+
+[node name="Num" type="Label" parent="UI/LeftPanel/VBoxContainer/Controls/BulletPoints2/Bullet1"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "• "
+
+[node name="Rule_1" type="Label" parent="UI/LeftPanel/VBoxContainer/Controls/BulletPoints2/Bullet1"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Left click to cycle through icons"
+autowrap_mode = 2
+
+[node name="Bullet2" type="HBoxContainer" parent="UI/LeftPanel/VBoxContainer/Controls/BulletPoints2"]
+layout_mode = 2
+
+[node name="Num" type="Label" parent="UI/LeftPanel/VBoxContainer/Controls/BulletPoints2/Bullet2"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "• "
+
+[node name="Rule_2" type="Label" parent="UI/LeftPanel/VBoxContainer/Controls/BulletPoints2/Bullet2"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Right click to remove symbols"
+autowrap_mode = 2
+
+[node name="Bullet3" type="HBoxContainer" parent="UI/LeftPanel/VBoxContainer/Controls/BulletPoints2"]
+layout_mode = 2
+
+[node name="Num" type="Label" parent="UI/LeftPanel/VBoxContainer/Controls/BulletPoints2/Bullet3"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "• "
+
+[node name="Rule_3" type="Label" parent="UI/LeftPanel/VBoxContainer/Controls/BulletPoints2/Bullet3"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Click Reset to clear the level , and Next to go to the next level!"
+autowrap_mode = 2
+
+[node name="DoubleLine" type="VBoxContainer" parent="UI/LeftPanel/VBoxContainer/Controls/BulletPoints2"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="UI/LeftPanel/VBoxContainer/Controls/BulletPoints2/DoubleLine"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="HSeparator2" type="HSeparator" parent="UI/LeftPanel/VBoxContainer/Controls/BulletPoints2/DoubleLine"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Rules" type="VBoxContainer" parent="UI/LeftPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="VBoxContainer" parent="UI/LeftPanel/VBoxContainer/Rules"]
+custom_minimum_size = Vector2(392.71, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HBox" type="HBoxContainer" parent="UI/LeftPanel/VBoxContainer/Rules/Header"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="UI/LeftPanel/VBoxContainer/Rules/Header/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Puzzle Rules"
+
+[node name="CloseButton1" type="Button" parent="UI/LeftPanel/VBoxContainer/Rules/Header/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_type_variation = &"EmptyButton"
+text = "-"
+
+[node name="HSeparator" type="HSeparator" parent="UI/LeftPanel/VBoxContainer/Rules/Header"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="HSeparator2" type="HSeparator" parent="UI/LeftPanel/VBoxContainer/Rules/Header"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="BulletPoints1" type="VBoxContainer" parent="UI/LeftPanel/VBoxContainer/Rules"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Bullet1" type="HBoxContainer" parent="UI/LeftPanel/VBoxContainer/Rules/BulletPoints1"]
+layout_mode = 2
+
+[node name="Num" type="Label" parent="UI/LeftPanel/VBoxContainer/Rules/BulletPoints1/Bullet1"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "• "
+
+[node name="Rule_1" type="Label" parent="UI/LeftPanel/VBoxContainer/Rules/BulletPoints1/Bullet1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fill the Grid"
+autowrap_mode = 2
+
+[node name="Bullet2" type="HBoxContainer" parent="UI/LeftPanel/VBoxContainer/Rules/BulletPoints1"]
+layout_mode = 2
+
+[node name="Num" type="Label" parent="UI/LeftPanel/VBoxContainer/Rules/BulletPoints1/Bullet2"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "• "
+
+[node name="Rule_2" type="Label" parent="UI/LeftPanel/VBoxContainer/Rules/BulletPoints1/Bullet2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Each row & column must contain exactly 3 Suns and 3 Moons"
+autowrap_mode = 2
+
+[node name="Bullet3" type="HBoxContainer" parent="UI/LeftPanel/VBoxContainer/Rules/BulletPoints1"]
+layout_mode = 2
+
+[node name="Num" type="Label" parent="UI/LeftPanel/VBoxContainer/Rules/BulletPoints1/Bullet3"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "• "
+
+[node name="Rule_3" type="Label" parent="UI/LeftPanel/VBoxContainer/Rules/BulletPoints1/Bullet3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "No 3 Suns or 3 Moons can appear consecutively in any row or column"
+autowrap_mode = 2
+
+[node name="DoubleLine" type="VBoxContainer" parent="UI/LeftPanel/VBoxContainer/Rules/BulletPoints1"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="UI/LeftPanel/VBoxContainer/Rules/BulletPoints1/DoubleLine"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="HSeparator2" type="HSeparator" parent="UI/LeftPanel/VBoxContainer/Rules/BulletPoints1/DoubleLine"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Right Panel" type="MarginContainer" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.75
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -161,239 +398,74 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
-script = ExtResource("5_8k6o0")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/margin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Right Panel"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_constants/separation = 20
+theme_override_constants/separation = 60
 
-[node name="Controls" type="VBoxContainer" parent="Ui/margin/VBoxContainer"]
+[node name="VolumeControl" type="VBoxContainer" parent="UI/Right Panel/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/separation = 20
+size_flags_vertical = 8
 
-[node name="Header" type="VBoxContainer" parent="Ui/margin/VBoxContainer/Controls"]
-custom_minimum_size = Vector2(392.71, 0)
+[node name="Header" type="Label" parent="UI/Right Panel/VBoxContainer/VolumeControl"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="HBox" type="HBoxContainer" parent="Ui/margin/VBoxContainer/Controls/Header"]
-layout_mode = 2
-
-[node name="Title" type="Label" parent="Ui/margin/VBoxContainer/Controls/Header/HBox"]
-layout_mode = 2
-size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
-text = "Controls"
+text = "Volume "
+vertical_alignment = 2
 
-[node name="CloseButton2" type="Button" parent="Ui/margin/VBoxContainer/Controls/Header/HBox"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_type_variation = &"EmptyButton"
-text = "-"
-
-[node name="HSeparator" type="HSeparator" parent="Ui/margin/VBoxContainer/Controls/Header"]
+[node name="HSeparator" type="HSeparator" parent="UI/Right Panel/VBoxContainer/VolumeControl"]
 modulate = Color(0.4, 0.4, 0.4, 1)
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="HSeparator2" type="HSeparator" parent="Ui/margin/VBoxContainer/Controls/Header"]
+[node name="HSeparator2" type="HSeparator" parent="UI/Right Panel/VBoxContainer/VolumeControl"]
 modulate = Color(0.4, 0.4, 0.4, 1)
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="BulletPoints2" type="VBoxContainer" parent="Ui/margin/VBoxContainer/Controls"]
-unique_name_in_owner = true
-clip_contents = true
+[node name="Label" type="Label" parent="UI/Right Panel/VBoxContainer/VolumeControl"]
 layout_mode = 2
-theme_override_constants/separation = 6
+text = "Master"
 
-[node name="Bullet1" type="HBoxContainer" parent="Ui/margin/VBoxContainer/Controls/BulletPoints2"]
+[node name="AudioHSlider" type="HSlider" parent="UI/Right Panel/VBoxContainer/VolumeControl"]
 layout_mode = 2
+script = ExtResource("6_3g0m4")
 
-[node name="Num" type="Label" parent="Ui/margin/VBoxContainer/Controls/BulletPoints2/Bullet1"]
+[node name="Label2" type="Label" parent="UI/Right Panel/VBoxContainer/VolumeControl"]
 layout_mode = 2
-size_flags_vertical = 0
-text = "• "
+text = "Music"
 
-[node name="Rule_1" type="Label" parent="Ui/margin/VBoxContainer/Controls/BulletPoints2/Bullet1"]
-custom_minimum_size = Vector2(30, 30)
+[node name="AudioHSlider2" type="HSlider" parent="UI/Right Panel/VBoxContainer/VolumeControl"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Left click to cycle through icons"
-autowrap_mode = 2
+script = ExtResource("6_3g0m4")
+bus_name = &"Music"
 
-[node name="Bullet2" type="HBoxContainer" parent="Ui/margin/VBoxContainer/Controls/BulletPoints2"]
+[node name="Label3" type="Label" parent="UI/Right Panel/VBoxContainer/VolumeControl"]
 layout_mode = 2
+text = "Sound Effects"
 
-[node name="Num" type="Label" parent="Ui/margin/VBoxContainer/Controls/BulletPoints2/Bullet2"]
+[node name="AudioHSlider3" type="HSlider" parent="UI/Right Panel/VBoxContainer/VolumeControl"]
 layout_mode = 2
-size_flags_vertical = 0
-text = "• "
+script = ExtResource("6_3g0m4")
+bus_name = &"Sound Effects"
 
-[node name="Rule_2" type="Label" parent="Ui/margin/VBoxContainer/Controls/BulletPoints2/Bullet2"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Right click to remove symbols"
-autowrap_mode = 2
-
-[node name="Bullet3" type="HBoxContainer" parent="Ui/margin/VBoxContainer/Controls/BulletPoints2"]
-layout_mode = 2
-
-[node name="Num" type="Label" parent="Ui/margin/VBoxContainer/Controls/BulletPoints2/Bullet3"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "• "
-
-[node name="Rule_3" type="Label" parent="Ui/margin/VBoxContainer/Controls/BulletPoints2/Bullet3"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Adjust difficulty in the right side slider , Click Clear to clear level , Next to go next level !"
-autowrap_mode = 2
-
-[node name="DoubleLine" type="VBoxContainer" parent="Ui/margin/VBoxContainer/Controls/BulletPoints2"]
-layout_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="Ui/margin/VBoxContainer/Controls/BulletPoints2/DoubleLine"]
+[node name="HSeparator3" type="HSeparator" parent="UI/Right Panel/VBoxContainer/VolumeControl"]
 modulate = Color(0.4, 0.4, 0.4, 1)
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="HSeparator2" type="HSeparator" parent="Ui/margin/VBoxContainer/Controls/BulletPoints2/DoubleLine"]
+[node name="HSeparator4" type="HSeparator" parent="UI/Right Panel/VBoxContainer/VolumeControl"]
 modulate = Color(0.4, 0.4, 0.4, 1)
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="Rules" type="VBoxContainer" parent="Ui/margin/VBoxContainer"]
+[node name="LevelSettings" type="VBoxContainer" parent="UI/Right Panel/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/separation = 20
-
-[node name="Header" type="VBoxContainer" parent="Ui/margin/VBoxContainer/Rules"]
-custom_minimum_size = Vector2(392.71, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="HBox" type="HBoxContainer" parent="Ui/margin/VBoxContainer/Rules/Header"]
-layout_mode = 2
-
-[node name="Title" type="Label" parent="Ui/margin/VBoxContainer/Rules/Header/HBox"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 50
-text = "Puzzle Rules"
-
-[node name="CloseButton1" type="Button" parent="Ui/margin/VBoxContainer/Rules/Header/HBox"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_type_variation = &"EmptyButton"
-text = "-"
-
-[node name="HSeparator" type="HSeparator" parent="Ui/margin/VBoxContainer/Rules/Header"]
-modulate = Color(0.4, 0.4, 0.4, 1)
-layout_mode = 2
-theme_override_constants/separation = 3
-
-[node name="HSeparator2" type="HSeparator" parent="Ui/margin/VBoxContainer/Rules/Header"]
-modulate = Color(0.4, 0.4, 0.4, 1)
-layout_mode = 2
-theme_override_constants/separation = 3
-
-[node name="BulletPoints1" type="VBoxContainer" parent="Ui/margin/VBoxContainer/Rules"]
-unique_name_in_owner = true
-clip_contents = true
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="Bullet1" type="HBoxContainer" parent="Ui/margin/VBoxContainer/Rules/BulletPoints1"]
-layout_mode = 2
-
-[node name="Num" type="Label" parent="Ui/margin/VBoxContainer/Rules/BulletPoints1/Bullet1"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "• "
-
-[node name="Rule_1" type="Label" parent="Ui/margin/VBoxContainer/Rules/BulletPoints1/Bullet1"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Fill the Grid"
-autowrap_mode = 2
-
-[node name="Bullet2" type="HBoxContainer" parent="Ui/margin/VBoxContainer/Rules/BulletPoints1"]
-layout_mode = 2
-
-[node name="Num" type="Label" parent="Ui/margin/VBoxContainer/Rules/BulletPoints1/Bullet2"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "• "
-
-[node name="Rule_2" type="Label" parent="Ui/margin/VBoxContainer/Rules/BulletPoints1/Bullet2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Each row & column must contain exactly 3 Suns and 3 Moons"
-autowrap_mode = 2
-
-[node name="Bullet3" type="HBoxContainer" parent="Ui/margin/VBoxContainer/Rules/BulletPoints1"]
-layout_mode = 2
-
-[node name="Num" type="Label" parent="Ui/margin/VBoxContainer/Rules/BulletPoints1/Bullet3"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "• "
-
-[node name="Rule_3" type="Label" parent="Ui/margin/VBoxContainer/Rules/BulletPoints1/Bullet3"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "No 3 Suns or 3 Moons can appear consecutively in any row or column"
-autowrap_mode = 2
-
-[node name="DoubleLine" type="VBoxContainer" parent="Ui/margin/VBoxContainer/Rules/BulletPoints1"]
-layout_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="Ui/margin/VBoxContainer/Rules/BulletPoints1/DoubleLine"]
-modulate = Color(0.4, 0.4, 0.4, 1)
-layout_mode = 2
-theme_override_constants/separation = 3
-
-[node name="HSeparator2" type="HSeparator" parent="Ui/margin/VBoxContainer/Rules/BulletPoints1/DoubleLine"]
-modulate = Color(0.4, 0.4, 0.4, 1)
-layout_mode = 2
-theme_override_constants/separation = 3
-
-[node name="Level2" type="VBoxContainer" parent="Ui"]
-offset_left = 1540.0
-offset_top = 718.0
-offset_right = 1841.0
-offset_bottom = 892.0
-size_flags_horizontal = 8
 size_flags_vertical = 4
 mouse_filter = 2
 alignment = 2
 
-[node name="Level Clear" type="Label" parent="Ui/Level2"]
+[node name="Level Clear" type="Label" parent="UI/Right Panel/VBoxContainer/LevelSettings"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
@@ -401,17 +473,17 @@ theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="HSeparator" type="HSeparator" parent="Ui/Level2"]
+[node name="HSeparator" type="HSeparator" parent="UI/Right Panel/VBoxContainer/LevelSettings"]
 modulate = Color(0.4, 0.4, 0.4, 1)
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HSeparator2" type="HSeparator" parent="Ui/Level2"]
+[node name="HSeparator2" type="HSeparator" parent="UI/Right Panel/VBoxContainer/LevelSettings"]
 modulate = Color(0.4, 0.4, 0.4, 1)
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Next_Level" type="Button" parent="Ui/Level2"]
+[node name="Next_Level" type="Button" parent="UI/Right Panel/VBoxContainer/LevelSettings"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
@@ -419,79 +491,72 @@ theme_override_colors/font_color = Color(0.819608, 1, 0.8, 1)
 theme_override_font_sizes/font_size = 50
 text = "Next Level"
 
-[node name="Reset" type="Button" parent="Ui/Level2"]
+[node name="Reset" type="Button" parent="UI/Right Panel/VBoxContainer/LevelSettings"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 50
 text = "Reset"
 
-[node name="Exit" type="Button" parent="Ui/Level2"]
+[node name="Exit" type="Button" parent="UI/Right Panel/VBoxContainer/LevelSettings"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
-[node name="HSeparator3" type="HSeparator" parent="Ui/Level2"]
+[node name="HSeparator3" type="HSeparator" parent="UI/Right Panel/VBoxContainer/LevelSettings"]
 modulate = Color(0.4, 0.4, 0.4, 1)
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HSeparator4" type="HSeparator" parent="Ui/Level2"]
+[node name="HSeparator4" type="HSeparator" parent="UI/Right Panel/VBoxContainer/LevelSettings"]
 modulate = Color(0.4, 0.4, 0.4, 1)
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Margin2" type="MarginContainer" parent="Ui"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -463.0
-offset_top = 12.0
-offset_right = -62.0
-offset_bottom = 348.0
-grow_horizontal = 0
+[node name="Difficulty" type="MarginContainer" parent="UI/Right Panel"]
+visible = false
+layout_mode = 2
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Margin2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Right Panel/Difficulty"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Ui/Margin2/VBoxContainer"]
+[node name="Label" type="Label" parent="UI/Right Panel/Difficulty/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Difficulty Slider !!!"
 
-[node name="HSeparator" type="HSeparator" parent="Ui/Margin2/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="UI/Right Panel/Difficulty/VBoxContainer"]
 modulate = Color(0.400698, 0.400698, 0.400698, 1)
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSeparator2" type="HSeparator" parent="Ui/Margin2/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="UI/Right Panel/Difficulty/VBoxContainer"]
 modulate = Color(0.400698, 0.400698, 0.400698, 1)
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Ui/Margin2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Right Panel/Difficulty/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Ui/Margin2/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="UI/Right Panel/Difficulty/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Difficulty :"
 
-[node name="difficulty" type="Label" parent="Ui/Margin2/VBoxContainer/HBoxContainer"]
+[node name="difficulty" type="Label" parent="UI/Right Panel/Difficulty/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0.1"
 horizontal_alignment = 1
 
-[node name="Diifculty_Slider" type="HSlider" parent="Ui/Margin2/VBoxContainer"]
+[node name="Diifculty_Slider" type="HSlider" parent="UI/Right Panel/Difficulty/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
@@ -499,80 +564,21 @@ max_value = 1.0
 step = 0.1
 ticks_on_borders = true
 
-[node name="HSeparator3" type="HSeparator" parent="Ui/Margin2/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="UI/Right Panel/Difficulty/VBoxContainer"]
 modulate = Color(0.400698, 0.400698, 0.400698, 1)
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSeparator4" type="HSeparator" parent="Ui/Margin2/VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="UI/Right Panel/Difficulty/VBoxContainer"]
 modulate = Color(0.400698, 0.400698, 0.400698, 1)
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="VolumeControl" type="VBoxContainer" parent="Ui"]
-offset_left = 1457.0
-offset_top = 362.0
-offset_right = 1849.0
-offset_bottom = 658.0
-size_flags_vertical = 8
-
-[node name="Header" type="Label" parent="Ui/VolumeControl"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Volume "
-vertical_alignment = 2
-
-[node name="HSeparator" type="HSeparator" parent="Ui/VolumeControl"]
-modulate = Color(0.4, 0.4, 0.4, 1)
-layout_mode = 2
-theme_override_constants/separation = 3
-
-[node name="HSeparator2" type="HSeparator" parent="Ui/VolumeControl"]
-modulate = Color(0.4, 0.4, 0.4, 1)
-layout_mode = 2
-theme_override_constants/separation = 3
-
-[node name="Label" type="Label" parent="Ui/VolumeControl"]
-layout_mode = 2
-text = "Master"
-
-[node name="AudioHSlider" type="HSlider" parent="Ui/VolumeControl"]
-layout_mode = 2
-script = ExtResource("6_3g0m4")
-
-[node name="Label2" type="Label" parent="Ui/VolumeControl"]
-layout_mode = 2
-text = "Music"
-
-[node name="AudioHSlider2" type="HSlider" parent="Ui/VolumeControl"]
-layout_mode = 2
-script = ExtResource("6_3g0m4")
-bus_name = &"Music"
-
-[node name="Label3" type="Label" parent="Ui/VolumeControl"]
-layout_mode = 2
-text = "Sound Effects"
-
-[node name="AudioHSlider3" type="HSlider" parent="Ui/VolumeControl"]
-layout_mode = 2
-script = ExtResource("6_3g0m4")
-bus_name = &"Sound Effects"
-
-[node name="HSeparator3" type="HSeparator" parent="Ui/VolumeControl"]
-modulate = Color(0.4, 0.4, 0.4, 1)
-layout_mode = 2
-theme_override_constants/separation = 3
-
-[node name="HSeparator4" type="HSeparator" parent="Ui/VolumeControl"]
-modulate = Color(0.4, 0.4, 0.4, 1)
-layout_mode = 2
-theme_override_constants/separation = 3
 
 [node name="PauseDialogue" parent="." instance=ExtResource("6_htdf5")]
 visible = false
 
-[connection signal="pressed" from="Ui/Level2/Next_Level" to="." method="_on_next_level_pressed"]
-[connection signal="drag_ended" from="Ui/Margin2/VBoxContainer/Diifculty_Slider" to="." method="_on_diifculty_slider_drag_ended"]
-[connection signal="value_changed" from="Ui/Margin2/VBoxContainer/Diifculty_Slider" to="." method="_on_diifculty_slider_value_changed"]
+[connection signal="pressed" from="UI/Right Panel/VBoxContainer/LevelSettings/Next_Level" to="." method="_on_next_level_pressed"]
+[connection signal="drag_ended" from="UI/Right Panel/Difficulty/VBoxContainer/Diifculty_Slider" to="." method="_on_diifculty_slider_drag_ended"]
+[connection signal="value_changed" from="UI/Right Panel/Difficulty/VBoxContainer/Diifculty_Slider" to="." method="_on_diifculty_slider_value_changed"]

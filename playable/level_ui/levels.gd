@@ -29,8 +29,8 @@ func spawn_levels(start_level: int, count: int):
 	for i in range(start_level, start_level + count):
 		var tile = LEVEL_GRID.instantiate()
 		var level_num = i + 1
-		var is_unlocked = level_num <= current_unlocked_level
-		var is_played = level_num <= current_played_level
+		var is_unlocked = level_num <= Game.highest_level_index + 1
+		var is_played = level_num <= Game.highest_level_index
 		tile.set_level(level_num, is_unlocked, is_played)
 		tile.connect("level_selected", _on_level_selected)
 		await get_tree().create_timer(0.01).timeout
@@ -38,9 +38,10 @@ func spawn_levels(start_level: int, count: int):
 	is_animating = false
 	updated.emit(is_animating)
 
+
 func load_level_progress():
-	current_unlocked_level = Game.current_level_index + 1
-	current_played_level = Game.current_level_index
+	current_unlocked_level = Game.highest_level_index + 1
+	current_played_level = Game.highest_level_index
 
 
 func _check_animation_complete():

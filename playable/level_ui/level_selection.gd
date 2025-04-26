@@ -8,6 +8,7 @@ var is_animating := false
 
 @onready var pevious: Button = %pevious
 @onready var next: Button = %next
+@onready var title_button: Button = %Title
 
 var current_page_index := 0
 

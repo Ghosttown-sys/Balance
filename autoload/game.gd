@@ -7,7 +7,8 @@ const PROGRESS_PATH := "user://progress.json"
 signal game_paused
 signal game_unpaused
 
-var current_level_index : int = 0
+var current_level_index : int = 1
+var highest_level_index : int = 0
 var is_in_tutorial := false
 var tutorials_completed := false
 
@@ -19,6 +20,8 @@ var current_difficulty := 0.0
 var transition_level := 0
 
 func _ready():
+	game_paused.connect(_on_game_paused)
+	game_unpaused.connect(_on_game_unpaused)
 	set_deferred("process_mode", ProcessMode.PROCESS_MODE_ALWAYS)
 	load_data()
 	load_progress()
@@ -51,6 +54,7 @@ func complete_current_level():
 func save_progress():
 	var progress_data = {
 		"current_level_index": current_level_index,
+		"highest_level_index" : highest_level_index,
 		"tutorials_completed": tutorials_completed,
 		"current_difficulty" : current_difficulty
 	}
@@ -68,7 +72,8 @@ func load_progress():
 
 	var progress_data = JSON.parse_string(content)
 	if progress_data:
-		current_level_index = progress_data.get("current_level_index", 0)
+		current_level_index = progress_data.get("current_level_index", 1)
+		highest_level_index = progress_data.get("highest_level_index", 0)
 		tutorials_completed = progress_data.get("tutorials_completed", false)
 		current_difficulty = progress_data.get("current_difficulty",0.0)
 
@@ -89,11 +94,12 @@ func load_data():
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	var content = file.get_as_text()
 	file.close()
-
+	
 	var data = JSON.parse_string(content)
 	if data:
 		player_name = data.get("player_name", "")
 		high_score = data.get("high_score", 0)
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
@@ -102,8 +108,12 @@ func _input(event: InputEvent) -> void:
 		else:
 			game_paused.emit()
 
+
 func _on_game_paused() -> void:
-	get_tree().paused = true
+	#get_tree().paused = true
+	pass
+
 
 func _on_game_unpaused() -> void:
-	get_tree().paused = false
+	#get_tree().paused = false
+	pass

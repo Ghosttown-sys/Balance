@@ -28,7 +28,7 @@ theme_override_constants/margin_bottom = 40
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_constants/separation = 60
+theme_override_constants/separation = 30
 
 [node name="pevious" type="Button" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -36,6 +36,14 @@ custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "< Previous"
+
+[node name="Title" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Title"
 
 [node name="next" type="Button" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
