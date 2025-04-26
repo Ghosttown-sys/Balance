@@ -33,7 +33,7 @@ func _on_reset_pressed() -> void:
 
 
 func start_level() -> void:
-	level_clear.visible = false
+	level_clear.text = ""
 	next_level.visible = false
 	reset_button.visible = true
 	puzzle.clear_puzzle()
@@ -41,7 +41,7 @@ func start_level() -> void:
 	puzzle.set_puzzle(Game.current_level_index, current_difficulty, complexcity)
 
 func _on_puzzle_completed() -> void:
-	level_clear.visible = true
+	level_clear.text = "Level Cleared!"
 	next_level.visible = true
 
 

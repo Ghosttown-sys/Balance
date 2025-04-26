@@ -1,6 +1,6 @@
 extends Control
 
-const LEVELS_PER_PAGE : int = 60
+const LEVELS_PER_PAGE : int = 24
 
 var current_unlocked_level := 1
 var current_played_level := 0
