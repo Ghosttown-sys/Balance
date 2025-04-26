@@ -73,6 +73,7 @@ func load_progress():
 		current_difficulty = progress_data.get("current_difficulty",0.0)
 
 func save_data():
+	@warning_ignore("shadowed_variable")
 	var save_data = {
 		"player_name": player_name,
 		"high_score": high_score,

@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://tyr0jsfpx8hn"]
+[gd_scene load_steps=5 format=3 uid="uid://tyr0jsfpx8hn"]
 
-[ext_resource type="Script" uid="uid://brapu7egej03q" path="res://autoload/music.gd" id="1_vnik8"]
+[ext_resource type="Script" uid="uid://brapu7egej03q" path="res://autoload/audio_manager.gd" id="1_vnik8"]
 [ext_resource type="AudioStream" uid="uid://dpduuqjjulgrw" path="res://assets/music/relaxing-piano-music-123845.mp3" id="2_vnik8"]
 [ext_resource type="AudioStream" uid="uid://cxyod5vxmiewu" path="res://assets/music/pop-cartoon-328167.mp3" id="3_vnik8"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vnik8"]
+random_pitch = 1.5
+random_volume_offset_db = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("3_vnik8")
 
 [node name="Music" type="Node"]
 script = ExtResource("1_vnik8")
@@ -11,7 +17,10 @@ script = ExtResource("1_vnik8")
 stream = ExtResource("2_vnik8")
 volume_db = -5.622
 autoplay = true
+bus = &"Music"
 
 [node name="pop" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_vnik8")
+stream = SubResource("AudioStreamRandomizer_vnik8")
 volume_db = -28.338
+max_polyphony = 3
+bus = &"Sound Effects"

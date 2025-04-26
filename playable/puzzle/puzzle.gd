@@ -189,6 +189,12 @@ func clear_puzzle() -> void:
 	undo_stack.clear()
 	redo_stack.clear()
 
+func reset_puzzle() -> void:
+	for value in user_values:
+		print(value)
+	print("-----")
+
+
 #region Tween Animations - Completely Isolated
 var active_tweens: Array[Tween] = []
 

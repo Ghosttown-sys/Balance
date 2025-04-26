@@ -268,7 +268,7 @@ theme_override_colors/font_color = Color(0.819608, 1, 0.8, 1)
 theme_override_font_sizes/font_size = 50
 text = "Next Level"
 
-[node name="Retry" type="Button" parent="Ui/Level2"]
+[node name="Reset" type="Button" parent="Ui/Level2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
@@ -365,6 +365,5 @@ size_flags_horizontal = 3
 visible = false
 
 [connection signal="pressed" from="Ui/Level2/Next_Level" to="." method="_on_next_level_pressed"]
-[connection signal="pressed" from="Ui/Level2/Retry" to="." method="_on_retry_pressed"]
 [connection signal="drag_ended" from="Ui/Control/VBoxContainer/Diifculty_Slider" to="." method="_on_diifculty_slider_drag_ended"]
 [connection signal="value_changed" from="Ui/Control/VBoxContainer/Diifculty_Slider" to="." method="_on_diifculty_slider_value_changed"]

@@ -23,8 +23,8 @@ func spawn_levels(start_level: int, count: int):
 	is_animating = true
 	updated.emit(is_animating)
 
-	var total_iterations = count
-	var current_iteration = 0
+	#var total_iterations = count
+	#var current_iteration = 0
 
 	for i in range(start_level, start_level + count):
 		var tile = LEVEL_GRID.instantiate()
@@ -43,7 +43,7 @@ func load_level_progress():
 	current_played_level = Game.current_level_index
 
 
-func _check_animation_complete(tween: Tween):
+func _check_animation_complete():
 	if spawn_tweens.all(func(t): return not t.is_running()):
 		is_animating = false
 		updated.emit(is_animating)
