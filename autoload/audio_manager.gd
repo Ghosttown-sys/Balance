@@ -1,11 +1,15 @@
 extends Node
 
 @onready var pop: AudioStreamPlayer = $pop
+@onready var error_sound: AudioStreamPlayer = $ErrorSound
 
 
-func play_pop():
-	pop.pitch_scale = randf_range(0.95, 1.05)
+func play_pop() -> void:
 	pop.play()
+
+
+func play_error() -> void:
+	error_sound.play()
 
 
 func _input(event: InputEvent) -> void:

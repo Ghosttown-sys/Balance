@@ -239,6 +239,8 @@ func animate_error_flash(cell: Control):
 	tween.tween_property(cell, "modulate", Color.WHITE, 0.2)
 	tween.set_loops(2)
 	cell.show_error(true)
+	Music.play_error()
+
 
 func animate_success_pulse(cell: Control):
 	var tween = create_tween()
